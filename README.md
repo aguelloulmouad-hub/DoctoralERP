@@ -106,22 +106,22 @@ Le module suit l'architecture **MVC (Model-View-Controller)** d'Odoo :
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    Navigateur Web (Client)                   │
+│                    Navigateur Web (Client)                  │
 ├──────────────────────┬──────────────────────────────────────┤
-│   Portail Web        │        Backend Odoo                   │
+│   Portail Web        │        Backend Odoo                  │
 │   (Doctorant)        │   (CED, Doyen, Admin)                │
 ├──────────────────────┴──────────────────────────────────────┤
-│                  Serveur Odoo 12                             │
-│  ┌──────────┐  ┌──────────┐  ┌──────────────┐              │
-│  │ Controllers│  │  Models  │  │    Views     │              │
-│  │  (Python) │  │ (Python) │  │   (XML)      │              │
-│  └──────────┘  └──────────┘  └──────────────┘              │
+│                  Serveur Odoo 12                            │
+│  ┌────────────┐  ┌──────────┐  ┌──────────────┐             │
+│  │ Controllers│  │  Models  │  │    Views     │             │
+│  │  (Python)  │  │ (Python) │  │   (XML)      │             │
+│  └────────────┘  └──────────┘  └──────────────┘             │
 │  ┌──────────────┐  ┌─────────────────────────┐              │
-│  │   Reports    │  │    Email Templates       │              │
-│  │  (XML+Python)│  │      (XML)               │              │
+│  │   Reports    │  │    Email Templates      │              │
+│  │  (XML+Python)│  │      (XML)              │              │
 │  └──────────────┘  └─────────────────────────┘              │
 ├─────────────────────────────────────────────────────────────┤
-│              PostgreSQL Database                             │
+│              PostgreSQL Database                            │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -145,18 +145,18 @@ L'infrastructure de production comprend :
 Le processus de soutenance suit un workflow précis avec **7 états** :
 
 ```
-┌───────────┐     ┌────────────┐     ┌──────────────┐     ┌──────────────────────┐
+┌───────────┐      ┌────────────┐     ┌──────────────┐      ┌──────────────────────┐
 │ Déposée   │────▶│ Commission │────▶│ Rapporteurs  │────▶│ Jury et Planification│
-│(Brouillon)│     │            │     │              │     │                      │
-└─────┬─────┘     └─────┬──────┘     └──────────────┘     └──────────┬───────────┘
-      │                 │                                            │
-      │            ┌────▼─────┐                              ┌──────▼──────┐
-      │            │ Rejetée  │                              │  Planifiée  │
-      │            └──────────┘                              └──────┬──────┘
-      │                                                            │
-      │                                                     ┌──────▼──────┐
-      │                                                     │   Fermée    │
-      │                                                     └─────────────┘
+│(Brouillon)│      │            │     │              │      │                      │
+└─────┬─────┘      └─────┬──────┘     └──────────────┘      └──────────┬───────────┘
+      │                  │                                             │
+      │             ┌────▼─────┐                                ┌──────▼──────┐
+      │             │ Rejetée  │                                │  Planifiée  │
+      │             └──────────┘                                └──────┬──────┘
+      │                                                                │
+      │                                                         ┌──────▼──────┐
+      │                                                         │   Fermée    │
+      │                                                         └─────────────┘
       │
       └──────▶ Rejetée (si refus CED)
 ```
@@ -377,8 +377,7 @@ stc/
 
 | | Nom | Rôle |
 |---|------|------|
-| 👤 | **Aguelloul Mouad** | Développeur & Co-auteur du PFE |
-| 👤 | **Amina Agazzar** | Développeuse & Co-auteure du PFE |
+| 👤 | **Aguelloul Mouad** | Développeur & Auteur du PFE |
 
 ---
 
@@ -389,8 +388,6 @@ Ce projet est distribué sous licence **AGPL-3.0** — voir le fichier [LICENSE]
 ---
 
 <div align="center">
-
-**⭐ Si ce projet vous est utile, n'hésitez pas à lui donner une étoile !**
 
 *Développé avec ❤️ pour la gestion universitaire*
 
