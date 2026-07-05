@@ -9,7 +9,7 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-13+-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![License: AGPL-3](https://img.shields.io/badge/License-AGPL--3-blue?style=for-the-badge)](https://www.gnu.org/licenses/agpl-3.0)
 
-*Projet de Fin d'Études — Aguelloul Mouad & Amina Agazzar*
+*Projet de Fin d'Études — Aguelloul Mouad*
 
 ---
 
