@@ -1,4 +1,4 @@
-<![CDATA[<div align="center">
+<div align="center">
 
 # 🎓 Gestion des Soutenances de Thèse — Module Odoo 12
 
@@ -128,7 +128,7 @@ Le module suit l'architecture **MVC (Model-View-Controller)** d'Odoo :
 ### Diagramme de Déploiement
 
 <p align="center">
-  <img src="../Imgs/DeploimentDiagramme.png" alt="Diagramme de déploiement" width="800"/>
+  <img src="Imgs/DeploimentDiagramme.png" alt="Diagramme de déploiement" width="800"/>
 </p>
 
 L'infrastructure de production comprend :
@@ -179,28 +179,28 @@ Le processus de soutenance suit un workflow précis avec **7 états** :
 Le doctorant soumet une nouvelle demande de soutenance via un formulaire web intégré au site.
 
 <p align="center">
-  <img src="../Imgs/PageFormulaireDemandeWEB.jpg" alt="Formulaire web de demande de soutenance" width="600"/>
+  <img src="Imgs/PageFormulaireDemandeWEB.jpg" alt="Formulaire web de demande de soutenance" width="600"/>
 </p>
 
 ### Portail Web — Mes Demandes de Soutenance
 Le doctorant peut consulter l'ensemble de ses demandes et leur statut, y compris les résultats et la mention.
 
 <p align="center">
-  <img src="../Imgs/PageMesDemandesSoutenancesWEB.jpg" alt="Page mes demandes de soutenance" width="700"/>
+  <img src="Imgs/PageMesDemandesSoutenancesWEB.jpg" alt="Page mes demandes de soutenance" width="700"/>
 </p>
 
 ### Backend Odoo — État Commission
 Vue du service CED lors de l'examen de la demande par la commission de thèse.
 
 <p align="center">
-  <img src="../Imgs/CaptureOdooCommission.jpg" alt="Vue Odoo état Commission" width="700"/>
+  <img src="Imgs/CaptureOdooCommission.jpg" alt="Vue Odoo état Commission" width="700"/>
 </p>
 
 ### Backend Odoo — Étape Rapporteurs
 Gestion des rapporteurs avec import Excel, validation et envoi des invitations.
 
 <p align="center">
-  <img src="../Imgs/CaptureOdooRapporteurs.jpg" alt="Vue Odoo étape Rapporteurs" width="700"/>
+  <img src="Imgs/CaptureOdooRapporteurs.jpg" alt="Vue Odoo étape Rapporteurs" width="700"/>
 </p>
 
 ---
@@ -210,7 +210,7 @@ Gestion des rapporteurs avec import Excel, validation et envoi des invitations.
 ### Diagramme de Classes
 
 <p align="center">
-  <img src="../Imgs/ClassDiagram.png" alt="Diagramme de classes UML" width="800"/>
+  <img src="Imgs/ClassDiagram.png" alt="Diagramme de classes UML" width="800"/>
 </p>
 
 Le modèle de données est composé des entités principales suivantes :
@@ -395,4 +395,3 @@ Ce projet est distribué sous licence **AGPL-3.0** — voir le fichier [LICENSE]
 *Développé avec ❤️ pour la gestion universitaire*
 
 </div>
-]]>
