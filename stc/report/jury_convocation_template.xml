@@ -1,0 +1,77 @@
+<odoo>
+<template id="jury_convocation_template">
+    <t t-call="stc.report_custom_layout">
+      <style type="text/css">
+        .page {
+          page-break-after: always;
+        }
+      </style>
+      <style type="text/css">
+        .page {
+          font-family: 'Times New Roman', Times, serif;
+          font-size: 14px;
+          line-height: 1.6;
+        }
+        .address {
+            font-weight: bold;
+            font-style: italic;
+            text-align: center;
+        }
+        .underlined {
+            text-decoration: underline;
+        }
+      </style>
+      <t t-foreach="docs" t-as="o">
+        <t t-foreach="o.jurys_ids" t-as="j">
+          <t t-if="not jury_id or j.id == jury_id">
+            <div class="page" style="position: relative; font-family: Times New Roman, serif; font-size: 14pt;">
+              <div style="position: absolute; right: 40px; top: 1px; font-size: 13px; text-align: right;">
+                <div><strong>N° Bureau d'Ordre :</strong> <span t-esc="j.numero_bo"/></div>
+                <div><strong>Date :</strong> <span t-esc="j.date" t-options="{'widget': 'date', 'format': 'dd/MM/yyyy'}"/></div>
+              </div>
+              <div style="text-align: center; margin-bottom: 50px;">
+                <p>Le Doyen</p>
+                <p>à</p>
+                <div class="address" style="margin-top:20px;">
+                    <p>
+                        <span t-if="j.grade"><t t-esc="j.grade"/> </span>
+                        <t t-esc="j.nom"/>
+                    </p>
+                    <p><t t-esc="j.institution"/></p>
+                </div>
+              </div>
+
+              <p style="margin-bottom: 30px;">
+                  <strong class="underlined">Objet</strong> : Soutenance de Thèse de Doctorat de <strong><t t-esc="o.doctorant_id.name"/></strong>.
+              </p>
+
+              <p>Cher Collègue,</p>
+              
+              <p>
+                <t t-if="j.role_par_ced.role == 'president'">
+                    J'ai l'honneur de vous inviter à présider le jury de soutenance de Doctorat de 
+                </t>
+                <t t-else="">
+                    J'ai l'honneur de vous inviter à participer en tant que membre du jury de soutenance de Doctorat de 
+                </t>
+                <strong> <t t-esc="o.doctorant_id.name"/>.</strong>
+              </p>
+
+              <p>
+                Cette soutenance publique aura lieu le
+                <strong>
+                    <span t-esc="o.date_soutenance" t-options='{"widget": "date", "format": "EEEE dd MMMM yyyy"}'/> à 10h00
+                </strong> à 
+                <strong> <t t-esc="o.lieu"/>.</strong>
+              </p>
+
+              <p style="margin-top: 30px;">
+                En attendant, je vous prie de recevoir, cher collègue, l'expression de mes sincères salutations.
+              </p>
+            </div>
+          </t>
+        </t>
+      </t>
+    </t>
+</template>
+</odoo> 

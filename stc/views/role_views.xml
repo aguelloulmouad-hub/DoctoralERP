@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stc_role_tree" model="ir.ui.view">
+        <field name="name">stc.role.tree</field>
+        <field name="model">stc.role</field>
+        <field name="arch" type="xml">
+            <tree string="Rôles de jury">
+                <field name="role"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stc_role_form" model="ir.ui.view">
+        <field name="name">stc.role.form</field>
+        <field name="model">stc.role</field>
+        <field name="arch" type="xml">
+            <form string="Rôle de jury">
+                <sheet>
+                    <group>
+                        <field name="role"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_stc_role" model="ir.actions.act_window">
+        <field name="name">Rôles de jury</field>
+        <field name="res_model">stc.role</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo> 

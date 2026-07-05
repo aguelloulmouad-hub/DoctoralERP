@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stc_doctorant_tree" model="ir.ui.view">
+        <field name="name">stc.doctorant.tree</field>
+        <field name="model">stc.doctorant</field>
+        <field name="arch" type="xml">
+            <tree string="Doctorants">
+                <field name="name"/>
+                <field name="encadrant_id"/>
+                <field name="annee_inscription"/>
+                <field name="date_debut_these"/>
+                <field name="credits"/>
+                <field name="formation_doctorale"/>
+                <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_stc_doctorant_form" model="ir.ui.view">
+        <field name="name">stc.doctorant.form</field>
+        <field name="model">stc.doctorant</field>
+        <field name="arch" type="xml">
+            <form string="Doctorant">
+                <group>
+                    <field name="name"/>
+                    <field name="encadrant_id"/>
+                    <field name="annee_inscription"/>
+                    <field name="date_debut_these"/>
+                    <field name="credits"/>
+                    <field name="formation_doctorale"/>
+                    <field name="user_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="view_stc_doctorant_search" model="ir.ui.view">
+        <field name="name">stc.doctorant.search</field>
+        <field name="model">stc.doctorant</field>
+        <field name="arch" type="xml">
+            <search string="Recherche Doctorant">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+</odoo> 

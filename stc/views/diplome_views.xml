@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stc_diplome_tree" model="ir.ui.view">
+        <field name="name">stc.diplome.tree</field>
+        <field name="model">stc.diplome</field>
+        <field name="arch" type="xml">
+            <tree string="Diplômes">
+                <field name="date_gen"/>
+                <field name="soutenance_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_stc_diplome_form" model="ir.ui.view">
+        <field name="name">stc.diplome.form</field>
+        <field name="model">stc.diplome</field>
+        <field name="arch" type="xml">
+            <form string="Diplôme">
+                <group>
+                    <field name="soutenance_id"/>
+                    <field name="date_gen"/>
+                    <field name="fichier" widget="binary"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="view_stc_diplome_search" model="ir.ui.view">
+        <field name="name">stc.diplome.search</field>
+        <field name="model">stc.diplome</field>
+        <field name="arch" type="xml">
+            <search string="Recherche Diplôme">
+                <field name="soutenance_id"/>
+            </search>
+        </field>
+    </record>
+</odoo> 

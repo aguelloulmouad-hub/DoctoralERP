@@ -1,0 +1,67 @@
+<odoo>
+<template id="attestation_participation_jury_template">
+    <t t-call="stc.report_custom_layout">
+      <style type="text/css">
+        .page {
+          page-break-after: always;
+        }
+        .table-jury {
+          border-collapse: collapse;
+          width: 100%;
+          margin-top: 15px;
+        }
+        .table-jury th, .table-jury td {
+          border: 1px solid #000;
+          padding: 4px 8px;
+          text-align: center;
+        }
+        .table-jury th {
+          background: #f5f5f5;
+        }
+        .qualite-jury {
+          font-style: italic;
+        }
+      </style>
+      <t t-foreach="docs" t-as="doc">
+        <div class="page" style="font-family: Times New Roman, serif; font-size: 14pt;">
+          <div style="text-align:center; margin-bottom:10px;">
+            <span style="font-size:22px; font-family: cursive; font-weight:bold;">ATTESTATION</span>
+          </div>
+          <p style="text-align:justify;">
+            Le Doyen de la Faculté des Sciences et Techniques de Béni Mellal, soussigné, atteste par la présente que
+            <strong><t t-esc="doc['jury'].nom"/></strong>,
+            Professeur à la Faculté des Sciences et Techniques de Béni Mellal, a participé en tant que membre du jury aux thèses de Doctorat ci-dessous, soutenues au Centre des Etudes Doctorales « Sciences et Techniques » de la Faculté des Sciences et Techniques de Béni Mellal.
+          </p>
+          <table class="table-jury">
+            <tr>
+              <th>Nom et prénom</th>
+              <th>Date de Soutenance</th>
+              <th>Qualité</th>
+            </tr>
+            <t t-foreach="doc['participations']" t-as="p">
+              <t t-if="p.soutenance_id and p.soutenance_id.doctorant_id">
+                <tr>
+                  <td style="font-weight:bold; text-align:left;">
+                    <t t-esc="p.soutenance_id.doctorant_id.name"/>
+                  </td>
+                  <td>
+                    <t t-esc="p.soutenance_id.date_soutenance" t-options="{'widget': 'date', 'format': 'dd MMMM yyyy'}"/>
+                  </td>
+                  <td class="qualite-jury">
+                    <t t-esc="p.role_par_ced.role"/>
+                  </td>
+                </tr>
+              </t>
+            </t>
+          </table>
+          <p style="margin-top:20px; text-align:justify;">
+            Cette attestation est délivrée à l'intéressé(e) pour valoir et servir ce que de droit.
+          </p>
+          <div style="margin-top:40px; text-align:right;">
+            <strong>Le Doyen</strong>
+          </div>
+        </div>
+      </t>
+    </t>
+</template>
+</odoo> 

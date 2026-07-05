@@ -1,0 +1,483 @@
+<odoo>
+<record id="view_modifier_demande_wizard_form" model="ir.ui.view">
+    <field name="name">modifier.demande.wizard.form</field>
+    <field name="model">modifier.demande.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Modifier la demande de soutenance">
+            <group>
+                <field name="name"/>
+                <field name="doctorant_id"/>
+            </group>
+            <group>
+                <field name="documents_ids">
+                    <tree editable="bottom">
+                        <field name="typedoc_id"/>
+                        <field name="filename"/>
+                        <field name="fichier"/>
+                    </tree>
+                </field>
+            </group>
+            <footer>
+                <button string="Appliquer" type="object" name="action_apply" class="btn-primary"/>
+                <button string="Annuler" special="cancel" class="btn-secondary"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_import_rapporteurs_wizard_form" model="ir.ui.view">
+    <field name="name">import.rapporteurs.wizard.form</field>
+    <field name="model">import.rapporteurs.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Importer des rapporteurs depuis Excel">
+            <field name="state" invisible="1"/>
+            <group states="import">
+                <field name="file"/>
+                <div class="alert alert-info" style="margin-top: 10px;">
+                    <b>Format attendu du fichier Excel :</b><br/>
+                    <img src="/stc/static/src/img/rapporteurs.png" style="max-width:100%; border:1px solid #ccc; margin:10px 0;"/>
+                    <i>La première ligne doit contenir les en-têtes.</i>
+                </div>
+            </group>
+            <group states="preview">
+                <field name="rapporteurs_lines">
+                    <tree editable="bottom">
+                        <field name="rapporteur_nom"/>
+                        <field name="grade"/>
+                        <field name="institution"/>
+                        <field name="email"/>
+                        <field name="tel"/>
+                        <field name="numero_bo"/>
+                        <field name="date"/>
+                    </tree>
+                </field>
+            </group>
+            <footer>
+                <button string="Importer" type="object" name="action_import" class="btn-primary" states="import"/>
+                <button string="Confirmer l'import" type="object" name="action_confirm_import" class="btn-primary" states="preview"/>
+                <button string="Retour" type="object" name="action_back_to_import" class="btn-secondary" states="preview"/>
+                <button string="Annuler" special="cancel" class="btn-secondary"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_rapporteur_upload_fichier_wizard_form" model="ir.ui.view">
+    <field name="name">rapporteur.upload.fichier.wizard.form</field>
+    <field name="model">rapporteur.upload.fichier.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Uploader un fichier">
+            <group>
+                <field name="fichier" widget="binary" filename="filename"/>
+            </group>
+            <footer>
+                <button string="Uploader" type="object" name="action_upload" class="btn-primary"/>
+                <button string="Annuler" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_rapporteur_upload_cv_wizard_form" model="ir.ui.view">
+    <field name="name">rapporteur.upload.cv.wizard.form</field>
+    <field name="model">rapporteur.upload.cv.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Uploader un CV">
+            <group>
+                <field name="cv_fichier" widget="binary" filename="cv_filename"/>
+            </group>
+            <footer>
+                <button string="Uploader" type="object" name="action_upload" class="btn-primary"/>
+                <button string="Annuler" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_ajout_rapporteurs_wizard_form" model="ir.ui.view">
+    <field name="name">ajout.rapporteurs.wizard.form</field>
+    <field name="model">ajout.rapporteurs.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Ajouter des rapporteurs">
+            <group>
+                <field name="rapporteurs_lines">
+                    <tree editable="bottom">
+                        <field name="rapporteur_nom"/>
+                        <field name="grade"/>
+                        <field name="institution"/>
+                        <field name="email"/>
+                        <field name="tel"/>
+                        <field name="numero_bo"/>
+                        <field name="date"/>
+                    </tree>
+                </field>
+            </group>
+            <footer>
+                <button string="Ajouter" type="object" name="action_add" class="btn-primary"/>
+                <button string="Annuler" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_modifier_rapporteurs_wizard_form" model="ir.ui.view">
+    <field name="name">modifier.rapporteurs.wizard.form</field>
+    <field name="model">modifier.rapporteurs.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Modifier les rapporteurs">
+            <group string="Numéro d'ordre et date (appliqués à tous les rapporteurs choisis)">
+                <field name="numero_bo"/>
+                <field name="date"/>
+            </group>
+            <group>
+                <field name="rapporteurs_lines">
+                    <tree editable="bottom">
+                        <field name="rapporteur_nom"/>
+                        <field name="grade"/>
+                        <field name="institution"/>
+                        <field name="email"/>
+                        <field name="tel"/>
+                    </tree>
+                </field>
+            </group>
+            <footer>
+                <button string="Appliquer" type="object" name="action_apply" class="btn-primary"/>
+                <button string="Annuler" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_import_jury_wizard_form" model="ir.ui.view">
+    <field name="name">import.jury.wizard.form</field>
+    <field name="model">import.jury.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Importer le jury depuis Excel">
+            <field name="state" invisible="1"/>
+            <group states="import">
+                <field name="file"/>
+                <div class="alert alert-info" style="margin-top: 10px;">
+                    <b>Format attendu du fichier Excel :</b><br/>
+                    <img src="/stc/static/src/img/jury_plan.png" style="max-width:100%; border:1px solid #ccc; margin:10px 0;"/>
+                    <i>La première ligne doit contenir les en-têtes.</i>
+                </div>
+            </group>
+            <group states="preview">
+                <group string="Planification">
+                    <field name="date_soutenance"/>
+                    <field name="lieu"/>
+                </group>
+            </group>
+            <group string="Membres du jury" states="preview">
+                <field name="jury_lines">
+                    <tree editable="bottom">
+                        <field name="nom"/>
+                        <field name="nom_ar"/>
+                        <field name="grade"/>
+                        <field name="institution"/>
+                        <field name="email"/>
+                        <field name="tel"/>
+                        <field name="role"/>
+                        <field name="role_par_ced"/>
+                        <field name="numero_bo"/>
+                        <field name="date"/>
+                    </tree>
+                </field>
+            </group>
+            <footer>
+                <button string="Importer" type="object" name="action_import" class="btn-primary" states="import"/>
+                <button string="Confirmer l'import" type="object" name="action_confirm_import" class="btn-primary" states="preview"/>
+                <button string="Retour" type="object" name="action_back_to_import" class="btn-secondary" states="preview"/>
+                <button string="Annuler" special="cancel" class="btn-secondary"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_ajout_jury_wizard_form" model="ir.ui.view">
+    <field name="name">ajout.jury.wizard.form</field>
+    <field name="model">ajout.jury.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Ajouter des membres du jury">
+            <group>
+                <field name="jury_lines">
+                    <tree editable="bottom">
+                        <field name="nom"/>
+                        <field name="nom_ar"/>
+                        <field name="grade"/>
+                        <field name="institution"/>
+                        <field name="email"/>
+                        <field name="tel"/>
+                        <field name="role_par_ced"/>
+                        <field name="numero_bo"/>
+                        <field name="date"/>
+                    </tree>
+                </field>
+            </group>
+            <footer>
+                <button string="Ajouter" type="object" name="action_add" class="btn-primary"/>
+                <button string="Annuler" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_modifier_jury_wizard_form" model="ir.ui.view">
+    <field name="name">modifier.jury.wizard.form</field>
+    <field name="model">modifier.jury.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Modifier les membres du jury">
+            <group string="N° Bureau d'Ordre et Date (appliqués à tous les jurys)">
+                <field name="numero_bo_global"/>
+                <field name="date_global"/>
+            </group>
+            <group>
+                <field name="jury_lines">
+                    <tree editable="bottom">
+                        <field name="nom"/>
+                        <field name="nom_ar"/>
+                        <field name="grade"/>
+                        <field name="institution"/>
+                        <field name="email"/>
+                        <field name="tel"/>
+                        <field name="role"/>
+                        <field name="role_par_ced"/>
+                    </tree>
+                </field>
+            </group>
+            <footer>
+                <button string="Appliquer" type="object" name="action_apply" class="btn-primary"/>
+                <button string="Annuler" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_ajout_planification_wizard_form" model="ir.ui.view">
+    <field name="name">ajout.planification.wizard.form</field>
+    <field name="model">ajout.planification.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Ajouter la planification">
+            <group>
+                <field name="date_soutenance"/>
+                <field name="lieu"/>
+            </group>
+            <footer>
+                <button string="Ajouter" type="object" name="action_add" class="btn-primary"/>
+                <button string="Annuler" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_modifier_planification_wizard_form" model="ir.ui.view">
+    <field name="name">modifier.planification.wizard.form</field>
+    <field name="model">modifier.planification.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Modifier la planification">
+            <group>
+                <field name="date_soutenance"/>
+                <field name="lieu"/>
+            </group>
+            <footer>
+                <button string="Appliquer" type="object" name="action_apply" class="btn-primary"/>
+                <button string="Annuler" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+    <record id="view_entrer_resultat_soutenance_wizard_form" model="ir.ui.view">
+        <field name="name">entrer.resultat.soutenance.wizard.form</field>
+        <field name="model">entrer.resultat.soutenance.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Entrer le résultat de la soutenance">
+                <group>
+                    <field name="resultat"/>
+                    <field name="mention"/>
+                    <field name="intitule"/>
+                    <field name="specialite_id"/>
+                    <field name="discipline_id"/>
+                </group>
+                <footer>
+                    <button string="Valider" type="object" name="action_apply" class="btn-primary"/>
+                    <button string="Annuler" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+<record id="view_confirmation_valider_rapporteurs_wizard_form" model="ir.ui.view">
+    <field name="name">confirmation.valider.rapporteurs.wizard.form</field>
+    <field name="model">confirmation.valider.rapporteurs.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Confirmation">
+            <group>
+                <p>Êtes-vous sûr de vouloir valider ces rapporteurs ?</p>
+            </group>
+            <group string="Liste des rapporteurs">
+                <field name="soutenance_id" invisible="1"/>
+                <field name="rapporteurs_ids" readonly="1" nolabel="1">
+                    <tree create="false" edit="false" delete="false">
+                        <field name="rapporteur_nom"/>
+                        <field name="grade"/>
+                        <field name="institution"/>
+                        <field name="email"/>
+                        <field name="numero_bo"/>
+                        <field name="date"/>
+                    </tree>
+                </field>
+            </group>
+            <footer>
+                <button name="action_confirm" type="object" string="Oui" class="btn-primary"/>
+                <!--<button name="action_refuser" type="object" string="Refuser" class="btn-danger"/>-->
+                <button string="Annuler" class="btn-secondary" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_confirmation_valider_jury_planification_wizard_form" model="ir.ui.view">
+    <field name="name">confirmation.valider.jury.planification.wizard.form</field>
+    <field name="model">confirmation.valider.jury.planification.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Confirmation">
+            <group>
+                <p>Êtes-vous sûr de vouloir valider la planification et le jury ?</p>
+            </group>
+            <group string="Planification">
+                <field name="date_soutenance" readonly="1"/>
+                <field name="lieu" readonly="1"/>
+            </group>
+            <group string="Liste des jurys">
+                <field name="soutenance_id" invisible="1"/>
+                <field name="jurys_ids" readonly="1" nolabel="1">
+                    <tree create="false" edit="false" delete="false">
+                        <field name="nom"/>
+                        <field name="grade"/>
+                        <field name="institution"/>
+                        <field name="email"/>
+                        <field name="role"/>
+                        <field name="role_par_ced"/>
+                        <field name="numero_bo"/>
+                        <field name="date"/>
+                    </tree>
+                </field>
+            </group>
+            <footer>
+                <button name="action_confirm" type="object" string="Oui" class="btn-primary"/>
+                <!--<button name="action_refuser" type="object" string="Refuser" class="btn-danger"/>-->
+                <button string="Annuler" class="btn-secondary" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_confirmation_valider_jury_planification_ced_wizard_form" model="ir.ui.view">
+    <field name="name">confirmation.valider.jury.planification.ced.wizard.form</field>
+    <field name="model">confirmation.valider.jury.planification.ced.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Confirmation">
+            <group>
+                <p>Êtes-vous sûr de vouloir valider la planification et le jury ?</p>
+            </group>
+            <group string="Planification">
+                <field name="date_soutenance" readonly="1"/>
+                <field name="lieu" readonly="1"/>
+            </group>
+            <group string="Liste des jurys">
+                <field name="soutenance_id" invisible="1"/>
+                <field name="jurys_ids" readonly="1" nolabel="1">
+                    <tree create="false" edit="false" delete="false">
+                        <field name="nom"/>
+                        <field name="grade"/>
+                        <field name="institution"/>
+                        <field name="email"/>
+                        <field name="role"/>
+                        <field name="role_par_ced"/>
+                        <field name="numero_bo"/>
+                        <field name="date"/>
+                    </tree>
+                </field>
+            </group>
+            <footer>
+                <button name="action_confirm" type="object" string="Oui" class="btn-primary"/>
+                <!--<button name="action_refuser" type="object" string="Refuser" class="btn-danger"/>-->
+                <button string="Annuler" class="btn-secondary" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_refus_rapporteurs_doyen_wizard_form" model="ir.ui.view">
+    <field name="name">refus.rapporteurs.doyen.wizard.form</field>
+    <field name="model">refus.rapporteurs.doyen.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Refus des rapporteurs">
+            <group>
+                <field name="message" placeholder="Saisir le motif du refus ou la demande de modification..." required="1"/>
+            </group>
+            <footer>
+                <button string="Envoyer au service CED" type="object" name="action_confirm" class="btn-primary"/>
+                <button string="Annuler" special="cancel" class="btn-secondary"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_refus_jury_planification_doyen_wizard_form" model="ir.ui.view">
+    <field name="name">refus.jury.planification.doyen.wizard.form</field>
+    <field name="model">refus.jury.planification.doyen.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Refus du jury/planification">
+            <group>
+                <field name="message" placeholder="Saisir le motif du refus ou la demande de modification..." required="1"/>
+            </group>
+            <footer>
+                <button string="Envoyer au service CED" type="object" name="action_confirm" class="btn-primary"/>
+                <button string="Annuler" special="cancel" class="btn-secondary"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_avis_commission_wizard_form" model="ir.ui.view">
+    <field name="name">avis.commission.wizard.form</field>
+    <field name="model">avis.commission.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Saisir l'avis de la commission">
+            <group>
+                <field name="action_type" widget="radio"/>
+                <field name="avis_commission" placeholder="Saisir l'avis de la commission..." required="1"/>
+                <field name="motif_rejet" attrs="{'required': [('action_type', '=', 'refuser')], 'invisible': [('action_type', '!=', 'refuser')]}">
+                </field>
+            </group>
+            <group attrs="{'invisible': [('action_type', '=', 'refuser')]}">
+                <field name="nb_articles" attrs="{'required': [('action_type', 'in', ['valider','accepter_conditionnel'])]}"/>
+                <field name="nb_chapter_books" attrs="{'required': [('action_type', 'in', ['valider','accepter_conditionnel'])]}"/>
+                <field name="nb_communications" attrs="{'required': [('action_type', 'in', ['valider','accepter_conditionnel'])]}"/>
+                <field name="traite_par_id" attrs="{'required': [('action_type', 'in', ['valider','accepter_conditionnel'])]}"/>
+            </group>
+            <footer>
+                <button string="Valider" type="object" name="action_apply" class="btn-primary"/>
+                <button string="Annuler" special="cancel" class="btn-secondary"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="view_refus_ced_wizard_form" model="ir.ui.view">
+    <field name="name">refus.ced.wizard.form</field>
+    <field name="model">refus.ced.wizard</field>
+    <field name="arch" type="xml">
+        <form string="Refus de la demande par le CED">
+            <group>
+                <field name="motif_rejet" placeholder="Saisir le motif du rejet..." required="1"/>
+            </group>
+            <footer>
+                <button string="Valider" type="object" name="action_apply" class="btn-primary"/>
+                <button string="Annuler" special="cancel" class="btn-secondary"/>
+            </footer>
+        </form>
+    </field>
+</record>
+</odoo>

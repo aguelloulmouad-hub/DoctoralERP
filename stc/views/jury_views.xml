@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stc_jury_tree" model="ir.ui.view">
+        <field name="name">stc.jury.tree</field>
+        <field name="model">stc.jury</field>
+        <field name="arch" type="xml">
+            <tree string="Jurys">
+                <field name="nom"/>
+                <field name="nom_ar"/>
+                <field name="grade"/>
+                <field name="institution"/>
+                <field name="email"/>
+                <field name="role"/>
+                <field name="tel"/>
+                <field name="soutenance_id"/>
+                <field name="role_par_ced"/>
+                <field name="numero_bo"/>
+                <field name="date"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_stc_jury_form" model="ir.ui.view">
+        <field name="name">stc.jury.form</field>
+        <field name="model">stc.jury</field>
+        <field name="arch" type="xml">
+            <form string="Jury">
+                <group>
+                    <field name="soutenance_id"/>
+                    <field name="nom"/>
+                    <field name="nom_ar"/>
+                    <field name="grade"/>
+                    <field name="institution"/>
+                    <field name="email"/>
+                    <field name="role"/>
+                    <field name="tel"/>
+                    <field name="role_par_ced"/>
+                    <field name="numero_bo"/>
+                    <field name="date"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="view_stc_jury_search" model="ir.ui.view">
+        <field name="name">stc.jury.search</field>
+        <field name="model">stc.jury</field>
+        <field name="arch" type="xml">
+            <search string="Recherche Jury">
+                <field name="nom"/>
+                <field name="soutenance_id"/>
+            </search>
+        </field>
+    </record>
+</odoo> 

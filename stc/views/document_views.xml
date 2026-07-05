@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stc_document_tree" model="ir.ui.view">
+        <field name="name">stc.document.tree</field>
+        <field name="model">stc.document</field>
+        <field name="arch" type="xml">
+            <tree string="Documents">
+                <field name="typedoc_id"/>
+                <field name="filename"/>
+                <field name="soutenance_id"/>
+                <field name="doctorant_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_stc_document_form" model="ir.ui.view">
+        <field name="name">stc.document.form</field>
+        <field name="model">stc.document</field>
+        <field name="arch" type="xml">
+            <form string="Document">
+                <group>
+                    <field name="typedoc_id"/>
+                    <field name="filename"/>
+                    <field name="fichier" widget="binary" filename="filename"/>
+                    <field name="soutenance_id"/>
+                    <field name="doctorant_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="view_stc_document_search" model="ir.ui.view">
+        <field name="name">stc.document.search</field>
+        <field name="model">stc.document</field>
+        <field name="arch" type="xml">
+            <search string="Recherche Document">
+                <field name="typedoc_id"/>
+                <field name="soutenance_id"/>
+            </search>
+        </field>
+    </record>
+</odoo> 

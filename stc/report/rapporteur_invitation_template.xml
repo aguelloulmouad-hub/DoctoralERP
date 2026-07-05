@@ -1,0 +1,67 @@
+<odoo>
+<template id="rapporteur_invitation_template">
+    <t t-call="stc.report_custom_layout">
+      <style type="text/css">
+        .page {
+          page-break-after: always;
+        }
+      </style>
+      <style type="text/css">
+        .page {
+          font-family: 'Times New Roman', Times, serif;
+          font-size: 14px;
+          line-height: 1.6;
+        }
+        .address {
+            font-style: italic;
+            text-align: center;
+        }
+        .address strong {
+            font-style: normal;
+            font-weight: bold;
+        }
+      </style>
+      <t t-foreach="docs" t-as="o">
+        <t t-foreach="o.rapporteurs_ids" t-as="r">
+          <t t-if="not rapporteur_id or r.id == rapporteur_id">
+            <div class="page" style="position: relative; font-family: Times New Roman, serif; font-size: 14pt;">
+              <div style="position: absolute; right: 40px; top: 1px; font-size: 14px; text-align: right;">
+                <div><strong>N° Bureau d'Ordre :</strong> <span t-esc="r.numero_bo"/></div>
+                <div><strong>Date :</strong> <span t-esc="r.date" t-options="{'widget': 'date', 'format': 'dd/MM/yyyy'}"/></div>
+              </div>
+              <div style="text-align: center; margin-top: 40px; margin-bottom: 70px;">
+                <p>Le Doyen</p>
+                <p>à</p>
+                <div class="address" style="margin-top:20px;">
+                    <p>
+                        <span t-esc="r.grade"/> <strong><span t-esc="r.rapporteur_nom"/></strong>
+                    </p>
+                    <p><span t-esc="r.institution"/></p>
+                </div>
+              </div>
+
+              <p>Cher collègue,</p>
+              
+              <p>
+                Je vous remercie d'avoir accepté d'évaluer la Thèse du Doctorat de 
+                <strong>Monsieur/Madame <t t-esc="o.doctorant_id.name"/></strong>. A cet effet, je vous transmets le manuscrit
+                et vous demande de bien vouloir me transmettre votre rapport dans un délai de
+                30 jours.
+              </p>
+
+              <p>
+                Pour conserver le caractère de confidentialité de votre rapport, je vous prie de
+                bien vouloir l'adresser au Décanat de la Faculté des Sciences et Techniques.
+              </p>
+
+              <p style="margin-top: 30px;">
+                En vous remerciant pour votre collaboration, veuillez agréer, cher collègue,
+                l'expression de mes sentiments les meilleurs.
+              </p>
+            </div>
+          </t>
+        </t>
+      </t>
+    </t>
+</template>
+</odoo> 

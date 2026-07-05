@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="mail_template_jury_convocation" model="mail.template">
+            <field name="name">Convocation à participer en tant que membre du jury</field>
+            <field name="model_id" ref="stc.model_stc_jury"/>
+            <field name="subject">Invitation à la soutenance de Doctorat de ${object.soutenance_id.doctorant_id.name or ''}</field>
+            <field name="email_from">${(user.email or 'noreply@example.com')|safe}</field>
+            <field name="email_to">${object.email | safe}</field>
+            <field name="body_html"><![CDATA[
+                <div style="font-family: Arial, sans-serif; font-size: 14pt;">
+                    <p>Cher collègue,</p>
+                    <p>
+                        Vous trouverez ci-joint la lettre d'invitation au jury de soutenance de thèse de Doctorat de Monsieur/Madame <strong>${object.soutenance_id.doctorant_id.name or ''}</strong> qui aura lieu <strong>${object.soutenance_id.date_soutenance.strftime('%A %d %B %Y') if object.soutenance_id.date_soutenance else ''} à ${object.soutenance_id.lieu or ''}</strong>.
+                    </p>
+                    <p>Bien cordialement.</p>
+                </div>
+            ]]></field>
+        </record>
+    </data>
+</odoo> 

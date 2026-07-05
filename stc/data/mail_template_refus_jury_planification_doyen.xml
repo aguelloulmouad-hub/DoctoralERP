@@ -1,0 +1,31 @@
+<odoo>
+    <record id="mail_template_refus_jury_planification_doyen" model="mail.template">
+        <field name="name">Refus du jury/planification par le doyen</field>
+        <field name="model_id" ref="stc.model_stc_soutenance"/>
+        <field name="subject">Demande de modification du jury/planification</field>
+        <field name="email_from">${(user.email or 'noreply@example.com')|safe}</field>
+        <field name="email_to">${object.doctorant_id.encadrant_nom or ''}</field>
+        <field name="body_html"><![CDATA[
+            <p>Bonjour,</p>
+            <p>Le doyen a refusé la planification ou la composition du jury pour la soutenance suivante :</p>
+            <ul>
+                <li><b>Doctorant :</b> ${object.doctorant_id.name or ''}</li>
+                <li><b>Titre :</b> ${object.name or ''}</li>
+            </ul>
+            <p><b>Message du doyen :</b></p>
+            <p>${ctx.get('message', '')}</p>
+            <p>Cordialement,</p>
+                    <br/>
+                    <p><em>${user.name}</em></p>
+            <br/>
+            <div style="margin-top:20px; font-size:13px;">
+                Faculté des Sciences et Techniques<br/>
+                Université Sultan Moulay Slimane<br/>
+                Beni-Mellal Maroc<br/>
+                Tél :  +212 5 23 48 51 12/22/82<br/>
+                Fax : +212 5 23 48 52 01
+            </div>
+        ]]></field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+</odoo> 

@@ -1,0 +1,102 @@
+<odoo>
+  <report
+    id="action_report_formulaire_dossier"
+    model="stc.soutenance"
+    string="Formulaire Dossier"
+    report_type="qweb-pdf"
+    name="stc.formulaire_dossier_template"
+    file="stc.formulaire_dossier_template"
+    print_report_name="'Formulaire Dossier - %s' % (object.name)"
+    paperformat="stc.paperformat_a4"
+  />
+  <report
+    id="action_report_rapporteur_invitation"
+    model="stc.soutenance"
+    string="Invitation Rapporteurs"
+    report_type="qweb-pdf"
+    name="stc.rapporteur_invitation_template"
+    file="stc.rapporteur_invitation_template"
+    print_report_name="'Invitation Rapporteurs - %s' % (object.name)"
+    paperformat="stc.paperformat_a4"
+  />
+  <report
+    id="action_report_jury_convocation"
+    model="stc.soutenance"
+    string="Convocation Jury"
+    report_type="qweb-pdf"
+    name="stc.jury_convocation_template"
+    file="stc.jury_convocation_template"
+    print_report_name="'Convocation Jury - %s' % (object.name)"
+    paperformat="stc.paperformat_a4"
+  />
+  <report
+    id="action_report_avis_soutenance"
+    model="stc.soutenance"
+    string="Avis de Soutenance"
+    report_type="qweb-pdf"
+    name="stc.avis_soutenance_template"
+    file="stc.avis_soutenance_template"
+    print_report_name="'Avis de Soutenance - %s' % (object.name)"
+    paperformat="stc.paperformat_a4"
+  />
+  <report
+    id="action_report_attestation_jury"
+    model="stc.soutenance"
+    string="Attestation Jury"
+    report_type="qweb-pdf"
+    name="stc.attestation_jury_template"
+    file="stc.attestation_jury_template"
+    print_report_name="'Attestation Jury - %s' % (object.name)"
+    paperformat="stc.paperformat_a4"
+  />
+  <report
+    id="action_report_pv_soutenance"
+    model="stc.soutenance"
+    string="PV de Soutenance"
+    report_type="qweb-pdf"
+    name="stc.pv_soutenance_template"
+    file="stc.pv_soutenance_template"
+    print_report_name="'PV de Soutenance - %s' % (object.name)"
+    paperformat="stc.paperformat_a4"
+  />
+  <report
+    id="action_report_attestation_reussite_doctorant"
+    model="stc.soutenance"
+    string="Attestation Réussite Doctorant"
+    report_type="qweb-pdf"
+    name="stc.attestation_reussite_doctorant_template"
+    file="stc.attestation_reussite_doctorant_template"
+    print_report_name="'Attestation Réussite - %s' % (object.name)"
+    paperformat="stc.paperformat_a4"
+  />
+  <report
+    id="action_report_fiche_de_renseignement"
+    model="stc.soutenance"
+    string="Fiche de Renseignement"
+    report_type="qweb-pdf"
+    name="stc.fiche_de_renseignement_template"
+    file="stc.fiche_de_renseignement_template"
+    print_report_name="'Fiche de Renseignement - %s' % (object.name)"
+    paperformat="stc.paperformat_a4"
+  />
+  <report
+    id="action_report_attestation_encadrement"
+    model="stc.personnel"
+    string="Attestation Encadrement"
+    report_type="qweb-pdf"
+    name="stc.attestation_encadrement_template"
+    file="stc.attestation_encadrement_template"
+    print_report_name="'Attestation Encadrement - %s' % (object.name)"
+    paperformat="stc.paperformat_a4"
+  />
+  <report
+    id="action_report_attestation_participation_jury"
+    model="stc.jury"
+    string="Attestation Participation Jury"
+    report_type="qweb-pdf"
+    name="stc.attestation_participation_jury_template"
+    file="stc.attestation_participation_jury_template"
+    print_report_name="'Attestation Participation Jury - %s' % (object.nom)"
+    paperformat="stc.paperformat_a4"
+  />
+</odoo>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stc_soutenance_tree" model="ir.ui.view">
+        <field name="name">stc.soutenance.tree</field>
+        <field name="model">stc.soutenance</field>
+        <field name="arch" type="xml">
+            <tree string="Demandes de Soutenance" create="true" groups="stc.group_service_ced,stc.group_encadrant,base.group_system" decoration-bf="statut == 'fermee'" decoration-muted="statut == 'brouillon'" decoration-success="statut == 'fermee'" decoration-danger="statut == 'rejetee'">
+                <field name="name" attrs="{'readonly': [('statut','!=','brouillon')]}"/>
+                <field name="doctorant_id" attrs="{'readonly': [('statut','!=','brouillon')]}"/>
+                <field name="date_soutenance"/>
+                <field name="lieu"/>
+                <field name="statut"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stc_soutenance_form" model="ir.ui.view">
+        <field name="name">stc.soutenance.form</field>
+        <field name="model">stc.soutenance</field>
+        <field name="arch" type="xml">
+            <form string="Demande de Soutenance">
+                <header>
+                    <field name="statut" widget="statusbar" statusbar_visible="brouillon,en_commission,rapporteurs,jury_et_planification,planifie,fermee"/>
+                    <button name="action_valider_ced" type="object" string="Valider CED" attrs="{'invisible': [('statut','!=','brouillon')]}" class="btn-success" groups="stc.group_service_ced,base.group_system"/>
+                    <button name="action_refuser_ced" type="object" string="Refuser CED" attrs="{'invisible': [('statut','!=','brouillon')]}" class="btn-danger" groups="stc.group_service_ced,base.group_system"/>
+                    <button name="action_valider_commission" type="object" string="Décision de Commission" attrs="{'invisible': [('statut','!=','en_commission')]}" class="btn-success" groups="stc.group_service_ced,base.group_system"/>
+                    <!--<button name="action_refuser_commission" type="object" string="Refuser Commission" attrs="{'invisible': [('statut','!=','en_commission')]}" class="btn-danger" groups="stc.group_service_ced,base.group_system"/>-->
+                    <button name="action_annuler_ced" type="object" string="Annuler CED" attrs="{'invisible': [('statut','not in',('en_commission','rejetee'))]}" class="btn-warning" groups="stc.group_service_ced,base.group_system"/>
+                    <button name="action_annuler_commission" type="object" string="Annuler Commission" attrs="{'invisible': [('statut','not in',('rapporteurs','rejetee'))]}" class="btn-warning" groups="stc.group_service_ced,base.group_system"/>
+                    <button name="action_planifie" type="object" string="Planifier Soutenance" attrs="{'invisible': [('statut','!=','jury_et_planification')]}" class="btn-success" groups="stc.group_service_ced,base.group_system"/>
+                    <button name="action_resultat_soutenance" type="object" string="Fermer Soutenance" attrs="{'invisible': [('statut','!=','planifie')]}" class="btn-success" groups="stc.group_service_ced,base.group_system"/>
+                    <button name="action_generer_diplome_finale" type="object" string="Générer Diplôme Finale" attrs="{'invisible': [('statut','!=','fermee')]}" class="btn-success" groups="stc.group_service_ced,base.group_system"/>
+                    <button name="action_valider_rapporteurs_ced" type="object" string="Valider Rapporteurs CED" attrs="{'invisible': [('statut','!=','rapporteurs')]}" class="btn-success" groups="stc.group_service_ced,base.group_system"/>
+                    <button name="action_informer_directeur_these" type="object" string="Informer Directeur Thèse" attrs="{'invisible': [('statut','!=','rapporteurs')]}" class="btn-info" groups="stc.group_service_ced,base.group_system"/>
+                    <button name="action_informer_directeur_these_jury" type="object" string="Informer Directeur Thèse" attrs="{'invisible': [('statut','!=','jury_et_planification')]}" class="btn-info" groups="stc.group_service_ced,base.group_system"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Informations de la demande">
+                            <field name="session_id"/>
+                            <field name="name"/>
+                            <field name="doctorant_id" attrs="{'readonly': [('statut','!=','brouillon')]}"/>
+                            <field name="encadrant_id" string="Encadrant"/>
+                            <field name="encardrant_email" string="Email de l'encadrant"/>
+                            <field name="note" readonly="1"/>
+                            <field name="motif_rejet" readonly="1"/>
+                            <div style="margin-bottom: 16px; text-align: left;">
+                                <button name="action_modifier_demande" type="object" string="Modifier Demande" class="oe_highlight btn-sm" context="{'active_id': id}" attrs="{'invisible': [('statut','!=','brouillon')]}" groups="stc.group_service_ced,stc.group_encadrant,base.group_system"/>
+                            </div>
+                        </group>
+                        <group string="Planification">
+                            <field name="date_soutenance" readonly="1"/>
+                            <field name="lieu" readonly="1"/>
+                            <div style="margin-bottom: 16px; margin-left: 5px; text-align: left;">
+                                <button name="action_modifier_planification" type="object" string="Modifier Planification" class="oe_highlight btn-sm" attrs="{'invisible': ['|', ('statut', '!=', 'jury_et_planification'), ('jurys_valides', '=', True)]}" groups="stc.group_service_ced,base.group_system"/>
+                                <button name="action_ajouter_planification" type="object" string="Ajouter Planification" class="oe_highlight btn-sm" attrs="{'invisible': ['|', ('statut', '!=', 'jury_et_planification'), ('jurys_valides', '=', True)]}" style="margin-left:8px;" groups="stc.group_service_ced,base.group_system"/>
+                            </div>
+                        </group>
+                        <group string="Décision commission">
+                            <field name="decision_commission" readonly="1"/> 
+                            <field name="avis_commission" readonly="1"/>
+                        </group>
+                        <group string="Décision jury">
+                            <field name="resultat" readonly="1"/>
+                            <field name="mention" readonly="1"/>
+                            <field name="specialite_id" readonly="1"/>
+                            <field name="discipline_id" readonly="1"/>
+                            <div style="margin-bottom: 16px; text-align: left;">
+                                <button name="action_entrer_resultat_soutenance" type="object" string="Entrer Résultat" attrs="{'invisible': [('statut','!=','planifie')]}" class="btn-primary btn-sm" groups="stc.group_service_ced,base.group_system"/>
+                            </div>
+                        </group>
+                        <group string="Fichiers Excel importés">
+                            <field name="rapporteurs_import_file" filename="rapporteurs_import_filename" widget="binary" readonly="1"/>
+                            <field name="jury_import_file" filename="jury_import_filename" widget="binary" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Documents">
+                            <field name="documents_ids" attrs="{'readonly': [('statut','!=','brouillon')]}">
+                                <tree editable="bottom">
+                                    <field name="typedoc_id"/>
+                                    <field name="filename"/>
+                                    <field name="fichier" widget="binary" filename="filename"/>                                    
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Rapporteurs">
+                            <div style="margin-bottom: 16px; margin-left: 5px; text-align: right;">
+                                <button name="action_importer_rapporteurs" type="object" string="Importer Rapporteurs" attrs="{'invisible': ['|', ('statut','!=','rapporteurs'), ('rapporteurs_valides', '=', True)]}" style="margin-right:8px;" class="btn-primary" groups="stc.group_service_ced,base.group_system"/>
+                                <button name="action_envoyer_invitations" type="object" string="Envoyer Invitations" attrs="{'invisible': [('statut','!=','rapporteurs')]}" style="margin-right:8px;" groups="stc.group_doyen,base.group_system"/>
+                                <button name="action_modifier_rapporteurs" type="object" string="Modifier Rapporteurs" attrs="{'invisible': [('statut','!=','rapporteurs')]}" style="margin-right:8px;" groups="stc.group_service_ced,base.group_system"/>
+                                <button name="action_ajouter_rapporteurs" type="object" string="Ajouter Rapporteurs" attrs="{'invisible': ['|', ('statut','!=','rapporteurs'), ('rapporteurs_valides', '=', True)]}" style="margin-right:8px;" groups="stc.group_service_ced,base.group_system"/>
+                                <button name="action_valider_rapporteurs_doyen" type="object" string="Valider Rapporteurs Doyen" attrs="{'invisible': [('statut','!=','rapporteurs')]}" class="btn-success" groups="stc.group_doyen,base.group_system"/>
+                            </div>
+                            <field name="rapporteurs_ids">
+                                <tree create="false">
+                                    <field name="rapporteur_nom"/>
+                                    <field name="grade"/>
+                                    <field name="institution"/>
+                                    <field name="email"/>
+                                    <field name="tel"/>
+                                    <field name="choisie" widget="boolean_toggle"/>
+                                    <field name="fichier" filename="filename" widget="binary" readonly="1"/>
+                                    <button name="action_upload_fichier" string="Upload" type="object" icon="fa-upload"/>
+                                    <field name="CV_fichier" widget="binary" readonly="1" filename="CV_filename"/>
+                                    <button name="action_upload_cv" string="Upload CV" type="object" icon="fa-upload"/>
+                                    <field name="avis_favorable" widget="boolean_toggle"/>
+                                    <field name="numero_bo"/>
+                                    <field name="date"/>
+                                </tree>
+                            </field>
+                            <field name="rapporteurs_valides" invisible="1"/>
+                        </page>
+                        <page string="Jurys">
+                            <div style="margin-bottom: 16px; margin-left: 5px; text-align: right;">
+                                <button name="action_importer_jury_planification" type="object" string="Importer Jury/Planification" attrs="{'invisible': ['|', ('statut', '!=', 'jury_et_planification'), ('jurys_valides', '=', True)]}" style="margin-right:8px;" class="btn-primary" groups="stc.group_service_ced,base.group_system"/>
+                                <button name="action_envoyer_convocations" type="object" string="Envoyer Convocations" attrs="{'invisible': [('statut', '!=', 'jury_et_planification')]}" style="margin-right:8px;" groups="stc.group_doyen,base.group_system"/>
+                                <button name="action_modifier_jury" type="object" string="Modifier Jury" attrs="{'invisible': [('statut', '!=', 'jury_et_planification')]}" style="margin-right:8px;" groups="stc.group_service_ced,base.group_system"/>
+                                <button name="action_ajouter_jury" type="object" string="Ajouter Jury" attrs="{'invisible': ['|', ('statut', '!=', 'jury_et_planification'), ('jurys_valides', '=', True)]}" style="margin-right:8px;" groups="stc.group_service_ced,base.group_system"/>
+                                <button name="action_valider_jury_et_planification_doyen" type="object" string="Valider Jury/Planification Doyen" attrs="{'invisible': [('statut', '!=', 'jury_et_planification')]}" class="btn-success" groups="stc.group_doyen,base.group_system"/>
+                                <button name="action_valider_jury_et_planification_ced" type="object" string="Valider Jury/Planification CED" attrs="{'invisible': [('statut', '!=', 'jury_et_planification')]}" class="btn-success" groups="stc.group_service_ced,base.group_system"/>
+                            </div>
+                            <field name="jurys_ids">
+                                <tree editable="bottom" create="false">
+                                    <field name="nom"/>
+                                    <field name="nom_ar"/>
+                                    <field name="grade"/>
+                                    <field name="institution"/>
+                                    <field name="email"/>
+                                    <field name="role"/>
+                                    <field name="tel"/>
+                                    <field name="role_par_ced"/>
+                                    <field name="numero_bo"/>
+                                    <field name="date"/>
+                                </tree>
+                            </field>
+                            <field name="jurys_valides" invisible="1"/>
+                            <field name="jurys_ced_valides" invisible="1"/>
+                        </page>
+                        <page string="Diplôme">
+                            <field name="diplome_id">
+                                <tree editable="bottom" create="false">
+                                    <field name="date_gen"/>
+                                    <field name="fichier" widget="binary"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_ids" nolabel="1" widget="mail_thread"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo> 

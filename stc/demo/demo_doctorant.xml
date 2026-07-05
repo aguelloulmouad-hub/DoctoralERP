@@ -1,0 +1,29 @@
+<odoo>
+    <!-- Utilisateur de test -->
+    <record id="user_doctorant_demo" model="res.users">
+        <field name="name">Doctorant Démo</field>
+        <field name="login">doctorant.demo@example.com</field>
+        <field name="password">demo1234</field>
+        <field name="groups_id" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <!-- Personnel encadrant de test -->
+    <record id="personnel_encadrant_demo" model="stc.personnel">
+        <field name="name">Encadrant Demo</field>
+        <field name="prenom">Jean</field>
+        <field name="grade">Professeur</field>
+        <field name="email">mouadagl10@gmail.com</field>
+    </record>
+
+    <!-- Doctorant lié à cet utilisateur -->
+    <record id="doctorant_demo" model="stc.doctorant">
+        <field name="name">Doctorant Démo</field>
+        <field name="encadrant_id" ref="personnel_encadrant_demo"/>
+        <field name="annee_inscription">2021</field>
+        <field name="date_debut_these">2021-10-01</field>
+        <field name="credits">180</field>
+        <field name="user_id" ref="user_doctorant_demo"/>
+        <field name="formation_doctorale">Sciences et Techniques</field>
+        <field name="code">RNES6</field>
+    </record>
+</odoo> 

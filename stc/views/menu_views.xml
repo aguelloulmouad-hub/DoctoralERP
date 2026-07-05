@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_stc_root" name="Soutenances" sequence="10"/>
+
+    <record id="action_stc_soutenance" model="ir.actions.act_window">
+        <field name="name">Demandes de Soutenance</field>
+        <field name="res_model">stc.soutenance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_stc_soutenance" name="Demandes de soutenance" parent="menu_stc_root" action="action_stc_soutenance" sequence="1"/>
+
+    <record id="action_stc_rapporteur_proposition" model="ir.actions.act_window">
+        <field name="name">Propositions de Rapporteurs</field>
+        <field name="res_model">stc.rapporteur.proposition</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_stc_rapporteur_proposition" name="Propositions de rapporteurs" parent="menu_stc_root" action="action_stc_rapporteur_proposition" sequence="2"/>
+
+    <record id="action_stc_jury" model="ir.actions.act_window">
+        <field name="name">Jurys</field>
+        <field name="res_model">stc.jury</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_stc_jury" name="Jurys" parent="menu_stc_root" action="action_stc_jury" sequence="3"/>
+
+    <record id="action_stc_document" model="ir.actions.act_window">
+        <field name="name">Documents</field>
+        <field name="res_model">stc.document</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_stc_document" name="Documents" parent="menu_stc_root" action="action_stc_document" sequence="4"/>
+
+    <record id="action_stc_document_type" model="ir.actions.act_window">
+        <field name="name">Types de document</field>
+        <field name="res_model">stc.document_type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_stc_document_type" name="Types de document" parent="menu_stc_root" action="action_stc_document_type" sequence="5"/>
+
+    <record id="action_stc_doctorant" model="ir.actions.act_window">
+        <field name="name">Doctorants</field>
+        <field name="res_model">stc.doctorant</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_stc_doctorant" name="Doctorants" parent="menu_stc_root" action="action_stc_doctorant" sequence="6"/>
+
+    <record id="action_stc_diplome" model="ir.actions.act_window">
+        <field name="name">Diplômes</field>
+        <field name="res_model">stc.diplome</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_stc_diplome" name="Diplômes" parent="menu_stc_root" action="action_stc_diplome" sequence="7"/>
+
+    <record id="action_stc_session" model="ir.actions.act_window">
+        <field name="name">Sessions</field>
+        <field name="res_model">stc.session</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_stc_session" name="Sessions" parent="menu_stc_root" action="action_stc_session" sequence="8"/>
+
+    <record id="action_stc_personnel" model="ir.actions.act_window">
+        <field name="name">Personnel</field>
+        <field name="res_model">stc.personnel</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_stc_personnel" name="Personnel" parent="menu_stc_root" action="action_stc_personnel" sequence="9"/>
+
+    <record id="action_stc_role" model="ir.actions.act_window">
+        <field name="name">Rôles de jury</field>
+        <field name="res_model">stc.role</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_stc_role" name="Rôles de jury" parent="menu_stc_root" action="action_stc_role" sequence="10"/>
+
+    <record id="action_pv_global_wizard" model="ir.actions.act_window">
+        <field name="name">PV Global Excel</field>
+        <field name="res_model">pv.global.wizard</field>
+        <field name="view_mode">form</field>
+    </record>
+    <menuitem id="menu_pv_global_wizard" name="PV Global Excel" parent="menu_stc_root" action="action_pv_global_wizard" sequence="99"/>
+
+    <record id="action_stc_specialite" model="ir.actions.act_window">
+        <field name="name">Spécialités</field>
+        <field name="res_model">stc.specialite</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_stc_specialite" name="Spécialités" parent="menu_stc_root" action="action_stc_specialite" sequence="11"/>
+
+    <record id="action_stc_discipline" model="ir.actions.act_window">
+        <field name="name">Disciplines</field>
+        <field name="res_model">stc.discipline</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_stc_discipline" name="Disciplines" parent="menu_stc_root" action="action_stc_discipline" sequence="12"/>
+</odoo> 

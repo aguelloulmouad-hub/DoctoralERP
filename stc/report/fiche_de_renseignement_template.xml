@@ -1,0 +1,78 @@
+<odoo>
+<template id="fiche_de_renseignement_template">
+    <t t-call="stc.report_custom_layout">
+      <style type="text/css">
+        .page {
+          page-break-after: always;
+        }
+      </style>
+      <t t-foreach="docs" t-as="o">
+            <div class="page" style="direction:rtl; font-family: 'Arial', 'DejaVu Sans', sans-serif; font-size: 14pt; text-align:right;">
+
+                <h3 style="text-align:center; font-weight:bold; text-decoration:underline; margin-bottom:30px;">
+                    ورقة معلومات خاصة بالحاصلين على دبلوم الدكتوراه
+                </h3>
+
+                <p><strong>الإسم والنسب:</strong> <t t-esc="o.doctorant_id.name"/></p>
+                <p><strong>تاريخ ومكان الإزدياد:</strong> .................... بـ ....................</p>
+                <p><strong>رقم البطاقة الوطنية:</strong> ....................</p>
+                <p><strong>تاريخ التسجيل بسلك الدكتوراه:</strong> <t t-esc="o.doctorant_id.date_debut_these or '....................'"/></p>
+
+                <div style="margin-top:20px; margin-bottom:20px; text-align:left; direction:ltr;">
+                    <p>
+                        <span style="font-weight:bold; text-decoration:underline;">Sujet :</span>
+                        <span style="font-weight:bold;"><t t-esc="o.name"/></span>
+                    </p>
+                </div>
+
+                <table style="width:100%; border-collapse: collapse; border: 1px solid black; margin-bottom:20px;">
+                    <tr>
+                        <td style="border: 1px solid black; padding: 5px; width:50%; font-weight:bold;">المادة</td>
+                        <td style="border: 1px solid black; padding: 5px; width:50%;"><t t-esc="o.discipline_id.name or ''"/></td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; padding: 5px; font-weight:bold;">التخصص</td>
+                        <td style="border: 1px solid black; padding: 5px;"><t t-esc="o.specialite_id.name or ''"/></td>
+                    </tr>
+                </table>
+
+                <p><strong>تاريخ مناقشتها:</strong> <t t-esc="o.date_soutenance"/> &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; <strong>الميزة:</strong> <t t-esc="o.mention"/></p>
+                <p><strong>أسماء أعضاء اللجنة ومؤهلاتهم العلمية:</strong></p>
+
+                <table style="width:100%; border-collapse: collapse; border: 1px solid black; margin-top:10px;">
+                    <thead>
+                        <tr style="background-color:#f2f2f2;">
+                            <th style="border: 1px solid black; padding: 8px; text-align: center; font-weight:bold;">الإسم والنسب</th>
+                            <th style="border: 1px solid black; padding: 8px; text-align: center; font-weight:bold;">الإطار</th>
+                            <th style="border: 1px solid black; padding: 8px; text-align: center; font-weight:bold;">المؤسسة</th>
+                            <th style="border: 1px solid black; padding: 8px; text-align: center; font-weight:bold;">الصفة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="range(5)" t-as="i">
+                            <tr>
+                                <td style="border: 1px solid black; padding: 8px;">&amp;nbsp;</td>
+                                <td style="border: 1px solid black; padding: 8px;">&amp;nbsp;</td>
+                                <td style="border: 1px solid black; padding: 8px;">&amp;nbsp;</td>
+                                <td style="border: 1px solid black; padding: 8px;">&amp;nbsp;</td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                
+                <table style="width:100%; margin-top:60px; text-align:center;">
+                    <tr>
+                        <td style="width:50%;"><strong>توقيع الطالب</strong></td>
+                        <td style="width:50%;"><strong>توقيع الأستاذ المؤطر</strong></td>
+                    </tr>
+                </table>
+
+                <div style="text-align:center; margin-top:40px;">
+                    <strong>توقيع وخاتم مدير مركز دراسات الدكتوراه</strong>
+                </div>
+
+          </div>
+      </t>
+    </t>
+</template>
+</odoo>

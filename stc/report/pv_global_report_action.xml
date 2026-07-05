@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.server" id="pv_global_report_action">
+            <field name="name">PV Global Excel</field>
+            <field name="model_id" ref="stc.model_stc_soutenance"/>
+            <field name="binding_model_id" ref="stc.model_stc_soutenance"/>
+            <field name="binding_type">report</field>
+            <field name="state">code</field>
+            <field name="code">
+# Génération du PV global Excel via le wizard
+wz = env['pv.global.wizard']
+rec = wz.create({})
+rec.action_generate_excel()
+action = {
+    "type": "ir.actions.act_url",
+    "url": "/web/content/%s/%s/%s/%s" % (wz._name, rec.id, 'datas', 'PV_global.xls'),
+    "target": "self",
+}
+            </field>
+        </record>
+    </data>
+</odoo> 

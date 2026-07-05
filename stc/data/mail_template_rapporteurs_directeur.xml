@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="mail_template_rapporteurs_directeur" model="mail.template">
+            <field name="name">Information au directeur de thèse - Proposition de rapporteurs</field>
+            <field name="model_id" ref="stc.model_stc_soutenance"/>
+            <field name="subject">Proposition de rapporteurs pour la thèse : ${object.name}</field>
+            <field name="email_from">${(user.email or 'noreply@example.com')|safe}</field>
+            <field name="email_to">${object.encardrant_email | safe}</field>
+            <field name="body_html"><![CDATA[
+                <div style="font-family: Arial, sans-serif; font-size: 14px;">
+                    <p>Bonjour ${object.encadrant_id.nom},</p>
+                    <p>
+                        La commission a donné un avis favorable à la soutenance intitulée <strong>${object.name}</strong>.<br/>
+                        Merci de bien vouloir proposer 6 rapporteurs en remplissant le fichier joint et en le transmettant au CED.
+                    </p>
+                    <p>Cordialement,</p>
+                    <br/>
+                    <p><em>${user.name}</em></p>
+                    <br/>
+                    <div style="margin-top:20px; font-size:13px;">
+                        Faculté des Sciences et Techniques<br/>
+                        Université Sultan Moulay Slimane<br/>
+                        Beni-Mellal Maroc<br/>
+                        Tél :  +212 5 23 48 51 12/22/82<br/>
+                        Fax : +212 5 23 48 52 01
+                    </div>
+                </div>
+            ]]></field>
+        </record>
+    </data>
+</odoo> 

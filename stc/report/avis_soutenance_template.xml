@@ -1,0 +1,47 @@
+<odoo>
+<template id="avis_soutenance_template">
+    <t t-call="stc.report_custom_layout">
+      <style type="text/css">
+        .page {
+          page-break-after: always;
+        }
+      </style>
+      <t t-foreach="docs" t-as="o">
+        <div class="page" style="font-family: Times New Roman, serif; font-size: 14pt;">
+          <div style="text-align:right; margin-bottom:20px;">
+            Béni Mellal, le
+            <t t-esc="(o.jurys_ids and o.jurys_ids[0].date) or ''"/>
+            <br/>
+            <span>N° Bureau d'Ordre : <t t-esc="(o.jurys_ids and o.jurys_ids[0].numero_bo) or ''"/></span>
+          </div>
+          <div style="text-align:center; margin-bottom:20px;">
+            <span style="font-size:22px; font-weight:bold; text-decoration:underline;">Avis de soutenance de Thèse de Doctorat</span>
+          </div>
+          <p style="text-align:justify; margin-bottom:20px;">
+            Le Doyen de la Faculté des Sciences et Techniques de Béni Mellal porte à la connaissance du public que 
+            <span style="font-weight:bold;"> Monsieur <t t-esc="o.doctorant_id.name"/></span>
+            soutiendra une thèse de Doctorat intitulée :
+            <span style="font-style:italic; color:#003399; text-decoration:underline;">«&#160;<t t-esc="o.name"/>&#160;»</span>.
+          </p>
+          <p style="text-align:justify; margin-bottom:20px;">
+            La soutenance publique aura lieu le
+            <span style="font-weight:bold;"><t t-esc="o.date_soutenance"/></span>
+            à <span style="font-weight:bold;"><t t-esc="o.lieu"/></span>
+            devant le jury composé de&#160;:
+          </p>
+          <ul style="margin-left: 30px;">
+            <t t-foreach="o.jurys_ids" t-as="j">
+              <li style="margin-bottom: 6px;">
+                <span style="font-weight:bold;">Monsieur <t t-esc="j.nom"/></span> :
+                <t t-if="j.grade"><t t-esc="j.grade"/>, </t>
+                <t t-if="j.institution"><t t-esc="j.institution"/>, </t>
+                <span style="font-weight:bold;" t-esc="j.role_par_ced.role"/>
+                ;
+              </li>
+            </t>
+          </ul>
+        </div>
+      </t>
+    </t>
+</template>
+</odoo> 

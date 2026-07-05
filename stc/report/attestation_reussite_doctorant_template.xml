@@ -1,0 +1,60 @@
+<odoo>
+<template id="attestation_reussite_doctorant_template">
+    <t t-call="stc.report_custom_layout">
+      <style type="text/css">
+        .page {
+          page-break-after: always;
+        }
+      </style>
+      <t t-foreach="docs" t-as="o">
+        <div class="page" style="font-family: Times New Roman, serif; font-size: 14pt;">
+          <div style="text-align:center; margin-bottom:10px;">
+            <span style="font-size:28px; font-family: cursive; font-weight:bold;">Attestation</span>
+          </div>
+          <p style="text-align:justify; margin-top:30px;">
+            Le Doyen de la Faculté des Sciences et Techniques de Béni Mellal, certifie que<br/>
+            Mr (elle) :
+            <span style="font-weight:bold; text-decoration:underline;">
+              <t t-esc="o.doctorant_id.name"/>
+            </span>
+            <br/>
+            Né(e) le : .................... à ....................
+          </p>
+          <p style="text-align:justify;">
+            A soutenu avec succès le <span style="font-weight:bold;"><t t-esc="o.date_soutenance"/></span> une thèse ayant pour sujet :<br/>
+            <span style="font-style:italic; color:#003399; text-decoration:underline;">
+              <t t-esc="o.name"/>
+            </span>
+          </p>
+          <p style="text-align:justify;">
+            Et a obtenu le diplôme de <span style="font-weight:bold; font-style:italic;">Doctorat</span>.
+          </p>
+          <p style="text-align:justify;">
+            <span style="font-weight:bold; font-style:italic;">Formation Doctorale :</span>
+            <span style="font-style:italic;">"<t t-esc="o.doctorant_id.formation_doctorale"/>"</span>
+          </p>
+          <p style="text-align:justify;">
+            <span style="font-weight:bold; font-style:italic;">Discipline :</span>
+            <span style="font-weight:bold;"> <t t-esc="o.discipline_id.name or ''"/></span>.
+          </p>
+          <p style="text-align:justify;">
+            <span style="font-weight:bold; font-style:italic;">Spécialité :</span>
+            <span style="font-weight:bold;"> <t t-esc="o.specialite_id.name or ''"/></span>.
+          </p>
+          <p style="text-align:justify;">
+            Avec la mention : <span style="font-weight:bold; font-style:italic;"><t t-esc="o.mention"/></span>
+          </p>
+          <p style="text-align:justify; margin-top:20px;">
+            Cette attestation est délivrée à l'intéressé(e) sur sa demande pour servir et valoir ce que de droit, en attendant que le diplôme lui sera établi.
+          </p>
+          <div style="margin-top:40px; text-align:right;">
+            Béni Mellal, le <span style="font-weight:bold;"><t t-esc="o.date_soutenance"/></span>
+          </div>
+          <div style="margin-top:40px; text-align:left; font-weight:bold;">
+            Le Doyen
+          </div>
+        </div>
+      </t>
+    </t>
+</template>
+</odoo> 

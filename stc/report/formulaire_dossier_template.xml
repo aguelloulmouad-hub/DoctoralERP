@@ -1,0 +1,59 @@
+<odoo>
+  <template id="formulaire_dossier_template">
+    <t t-call="stc.report_custom_layout">
+      <style type="text/css">
+        .page {
+          page-break-after: always;
+        }
+        table.table-bordered {
+          border-collapse: collapse;
+          width: 100%;
+        }
+        table.table-bordered td {
+          border: 1px solid black;
+          padding: 5px;
+          vertical-align: top;
+        }
+        h2 {
+          text-align: center;
+          text-decoration: underline;
+        }
+        .right-align {
+          text-align: right;
+        }
+      </style>
+      <t t-foreach="docs" t-as="o">
+        <div class="page" style="font-family: Times New Roman, serif; font-size: 14pt;">
+          <h2>Demande de soutenance de Thèse</h2>
+          <div class="right-align">Date : <t t-esc="current_date"/></div><br/>
+          <table class="table-bordered">
+            <tr><td>Nom</td><td colspan="2"><t t-esc="o.doctorant_id.name or ''"/></td></tr>
+            <tr><td>Prénom</td><td colspan="2"></td></tr>
+            <tr><td>Titre de la Thèse</td><td colspan="2"><t t-esc="o.name or ''"/></td></tr>
+            <tr><td>Directeur de Thèse</td><td colspan="2"><t t-esc="(o.doctorant_id.encadrant_id.name or '') + ' ' + (o.doctorant_id.encadrant_id.prenom or '')"/></td></tr>
+            <tr><td>Co-Directeur de thèse</td><td colspan="2"></td></tr>
+            <tr><td>Structure de Recherche d'Accueil</td><td colspan="2"></td></tr>
+            <tr><td>Formation Doctorale</td><td colspan="2"><t t-esc="o.doctorant_id.formation_doctorale or ''"/></td></tr>
+            <tr><td>Date de la 1ère Inscription</td><td colspan="2"><t t-esc="o.doctorant_id.annee_inscription or ''"/></td></tr>
+            <tr>
+              <td rowspan="2">Nombre de Publications (Scopus)</td>
+              <td style="width:25%;">Article</td>
+              <td style="width:25%;"><t t-esc="o.nb_articles or ''"/></td>
+            </tr>
+            <tr>
+              <td style="width:25%;">Conference paper/Chapter book</td>
+              <td style="width:25%;"><t t-esc="o.nb_chapter_books or ''"/></td>
+            </tr>
+
+            <tr><td>Nombre de Communications</td><td colspan="2"><t t-esc="o.nb_communications or ''"/></td></tr>
+            <tr><td>Dossier Traité par</td><td colspan="2"><t t-esc="o.traite_par_id.name or ''"/></td></tr>
+            <tr><td>Avis de la Commission de Thèses</td><td colspan="2"></td></tr>
+          </table>
+          <div style="margin-top:20px;">
+            Visas des membres de la commission de thèses.
+          </div>
+        </div>
+      </t>
+    </t>
+  </template>
+</odoo>

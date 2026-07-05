@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stc_personnel_tree" model="ir.ui.view">
+        <field name="name">stc.personnel.tree</field>
+        <field name="model">stc.personnel</field>
+        <field name="arch" type="xml">
+            <tree string="Personnel">
+                <field name="name"/>
+                <field name="prenom"/>
+                <field name="grade"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stc_personnel_form" model="ir.ui.view">
+        <field name="name">stc.personnel.form</field>
+        <field name="model">stc.personnel</field>
+        <field name="arch" type="xml">
+            <form string="Personnel">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="prenom"/>
+                        <field name="grade"/>
+                        <field name="email"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_stc_personnel" model="ir.actions.act_window">
+        <field name="name">Personnel</field>
+        <field name="res_model">stc.personnel</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo> 

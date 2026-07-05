@@ -1,0 +1,14 @@
+<odoo>
+    <record id="group_encadrant" model="res.groups">
+        <field name="name">Encadrant</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+    <record id="group_service_ced" model="res.groups">
+        <field name="name">Service CED</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+    <record id="group_doyen" model="res.groups">
+        <field name="name">Doyen</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+</odoo> 

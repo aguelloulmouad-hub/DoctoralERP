@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stc_document_type_tree" model="ir.ui.view">
+        <field name="name">stc.document.type.tree</field>
+        <field name="model">stc.document_type</field>
+        <field name="arch" type="xml">
+            <tree string="Types de document">
+                <field name="name"/>
+                <field name="obligatoire"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_stc_document_type_form" model="ir.ui.view">
+        <field name="name">stc.document.type.form</field>
+        <field name="model">stc.document_type</field>
+        <field name="arch" type="xml">
+            <form string="Type de document">
+                <group>
+                    <field name="name"/>
+                    <field name="obligatoire"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="view_stc_document_type_search" model="ir.ui.view">
+        <field name="name">stc.document.type.search</field>
+        <field name="model">stc.document_type</field>
+        <field name="arch" type="xml">
+            <search string="Recherche Type de document">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+</odoo> 

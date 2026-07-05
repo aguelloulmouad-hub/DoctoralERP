@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stc_discipline_tree" model="ir.ui.view">
+        <field name="name">stc.discipline.tree</field>
+        <field name="model">stc.discipline</field>
+        <field name="arch" type="xml">
+            <tree string="Disciplines">
+                <field name="name"/>
+                <field name="id_specialite"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_stc_discipline_form" model="ir.ui.view">
+        <field name="name">stc.discipline.form</field>
+        <field name="model">stc.discipline</field>
+        <field name="arch" type="xml">
+            <form string="Discipline">
+                <group>
+                    <field name="name"/>
+                    <field name="id_specialite"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo> 

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stc_soutenance_service_ced,access_stc_soutenance_service_ced,model_stc_soutenance,stc.group_service_ced,1,1,1,1
+access_stc_soutenance_encadrant,access_stc_soutenance_encadrant,model_stc_soutenance,stc.group_encadrant,1,0,0,0
+access_stc_soutenance_doyen,access_stc_soutenance_doyen,model_stc_soutenance,stc.group_doyen,1,0,0,0
+access_stc_soutenance_admin,access_stc_soutenance_admin,model_stc_soutenance,base.group_system,1,1,1,1 

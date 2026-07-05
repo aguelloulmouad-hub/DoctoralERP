@@ -1,0 +1,333 @@
+<odoo>
+<template id="pv_soutenance_template">
+    <t t-call="stc.report_custom_layout">
+      <style type="text/css">
+        .page {
+          page-break-after: always;
+        }
+      </style>
+      <t t-foreach="docs" t-as="o">
+        <!-- Page 1 -->
+        <div class="page" style="font-family: Times New Roman, serif; font-size: 14pt; line-height: 1.5;">
+          <h3 style="text-align:center; font-weight:bold; text-decoration:underline;">RAPPORT DU JURY DE SOUTENANCE</h3>
+
+          <table style="width:100%; margin-top:25px; border-collapse: collapse;">
+            <tr style="margin-bottom: 5px;">
+              <td style="width:25%;">De la thèse de Mr</td>
+              <td style="width:5%;">:</td>
+              <td style="width:70%; font-weight:bold;"><t t-esc="o.doctorant_id.name"/></td>
+            </tr>
+            <tr style="margin-bottom: 5px;">
+              <td style="vertical-align:top;">- Intitulée</td>
+              <td style="vertical-align:top;">:</td>
+              <td style="font-style:italic;">« <t t-esc="o.name"/> »</td>
+            </tr>
+            <tr style="margin-bottom: 5px;">
+              <td>Soutenue le</td>
+              <td>:</td>
+              <td style="font-weight:bold;">01/01/2024</td>
+            </tr>
+            <tr style="margin-bottom: 5px;">
+              <td>CED</td>
+              <td>:</td>
+              <td>Sciences et Techniques.</td>
+            </tr>
+            <tr style="margin-bottom: 5px;">
+              <td>Formation Doctorale</td>
+              <td>:</td>
+              <td><t t-esc="o.doctorant_id.formation_doctorale"/></td>
+            </tr>
+            <tr style="margin-bottom: 5px;">
+              <td>Discipline</td>
+              <td>:</td>
+              <td><t t-esc="o.discipline_id.name or ''"/></td>
+            </tr>
+            <tr style="margin-bottom: 5px;">
+              <td>Spécialité</td>
+              <td>:</td>
+              <td><t t-esc="o.specialite_id.name or ''"/></td>
+            </tr>
+          </table>
+
+          <div style="margin-top:30px;">
+            <p style="font-weight:bold; text-decoration:underline;">1- LE CONTENU DU TRAVAIL :</p>
+            <div style="margin-left:20px;">
+              <p style="font-weight:bold; text-decoration:underline;">1-1. Aspect qualitatif</p>
+              <p>Ce travail contient :</p>
+              <ul style="list-style-type: none; padding-left: 20px;">
+                <li><span class="fa fa-square-o"/> Des données expérimentales nouvelles et utiles</li>
+                <li><span class="fa fa-square-o"/> Des observations de terrain nouvelles</li>
+                <li><span class="fa fa-square-o"/> Des simulations non vérifiées</li>
+                <li><span class="fa fa-square-o"/> Des résultats originaux</li>
+                <li><span class="fa fa-square-o"/> Une revue critique des connaissances existantes</li>
+              </ul>
+
+              <p style="font-weight:bold; text-decoration:underline; margin-top:20px;">1-2. Aspect quantitatif</p>
+              <p>Pour une thèse de Doctorat, le volume de travail réalisé dans cette thèse est :</p>
+              <ul style="list-style-type: none; padding-left: 20px;">
+                <li><span class="fa fa-square-o"/> Important</li>
+                <li><span class="fa fa-square-o"/> Moyen</li>
+                <li><span class="fa fa-square-o"/> Faible</li>
+              </ul>
+            </div>
+
+            <p style="font-weight:bold; text-decoration:underline; margin-top:30px;">2- LA PORTÉE :</p>
+            <div style="margin-left:20px;">
+                <p>La portée de ce travail est considérée comme :</p>
+                <ul style="list-style-type: none; padding-left: 20px;">
+                    <li><span class="fa fa-square-o"/> Importante</li>
+                    <li><span class="fa fa-square-o"/> Modérée</li>
+                    <li><span class="fa fa-square-o"/> Mineure</li>
+                </ul>
+            </div>
+
+            <p style="font-weight:bold; text-decoration:underline; margin-top:30px;">3- LA PRESENTATION ÉCRITE :</p>
+            <div style="margin-left:20px;">
+                <ul style="list-style-type: none; padding-left: 20px;">
+                    <li><span class="fa fa-square-o"/> Très bonne</li>
+                    <li><span class="fa fa-square-o"/> Bonne</li>
+                    <li><span class="fa fa-square-o"/> Moyenne</li>
+                    <li><span class="fa fa-square-o"/> À revoir</li>
+                </ul>
+            </div>
+          </div>
+
+          <p style="font-weight:bold; text-decoration:underline;">4- LA PRÉSENTATION ORALE :</p>
+          <div style="margin-left:20px;">
+            <p style="font-weight:bold; text-decoration:underline;">4.1. Point de vue pédagogique <span style="font-weight:normal;">(clarté de l'exposé, qualités pédagogiques du candidat)</span></p>
+            <ul style="list-style-type: none; padding-left: 20px;">
+              <li><span class="fa fa-square-o"/> Très bonne</li>
+              <li><span class="fa fa-square-o"/> Bonne</li>
+              <li><span class="fa fa-square-o"/> Moyenne</li>
+              <li><span class="fa fa-square-o"/> Médiocre</li>
+            </ul>
+            
+            <p style="font-weight:bold; text-decoration:underline; margin-top:15px;">4.2. Point de vue esthétique <span style="font-weight:normal;">(qualité du support pédagogique, soins apportés, ...)</span></p>
+            <ul style="list-style-type: none; padding-left: 20px;">
+              <li><span class="fa fa-square-o"/> Très bonne</li>
+              <li><span class="fa fa-square-o"/> Bonne</li>
+              <li><span class="fa fa-square-o"/> Moyenne</li>
+              <li><span class="fa fa-square-o"/> Médiocre</li>
+            </ul>
+          </div>
+
+          <p style="font-weight:bold; text-decoration:underline; margin-top:20px;">5- LA MAÎTRISE DU SUJET PAR LE CANDIDAT ET LES RÉPONSES AUX QUESTIONS :</p>
+          <div style="margin-left:20px;">
+            <ul style="list-style-type: none; padding-left: 20px;">
+              <li><span class="fa fa-square-o"/> Très satisfaisantes</li>
+              <li><span class="fa fa-square-o"/> Satisfaisantes</li>
+              <li><span class="fa fa-square-o"/> Moyennes</li>
+              <li><span class="fa fa-square-o"/> Non satisfaisantes</li>
+            </ul>
+          </div>
+
+          <p style="font-weight:bold; text-decoration:underline; margin-top:20px;">6- AUTRES COMMENTAIRES :</p>
+          <div style="margin-left:20px; min-height:60px; border-bottom:1px dotted #000;">
+             &amp;nbsp;
+          </div>
+
+          <p style="font-weight:bold; margin-top:20px;">CONCLUSION : Le candidat Mr : <span style="text-decoration:underline;"><t t-esc="o.doctorant_id.name"/></span> est :</p>
+          <div style="margin-left:20px;">
+            <ul style="list-style-type: none; padding-left: 20px;">
+              <li style="display:inline-block; min-width:120px;">
+                <span class="fa fa-square-o"/> Admis(e)
+              </li>
+              <li style="display:inline-block; min-width:120px;">
+                <span class="fa fa-square-o"/> Ajourné(e)
+              </li>
+              <li style="display:inline-block; min-width:120px;">
+                avec la mention :
+                <span t-if="o.mention == 'tres_honorable'" class="fa fa-check-square-o"/> <span t-if="o.mention != 'tres_honorable'" class="fa fa-square-o"/> Très honorable
+                <span t-if="o.mention == 'honorable'" class="fa fa-check-square-o"/> <span t-if="o.mention != 'honorable'" class="fa fa-square-o"/> Honorable
+              </li>
+            </ul>
+          </div>
+
+          <div style="margin-top:30px;">
+            Date et signatures des membres du jury :
+            <span style="font-weight:bold;"> 01 janvier 2024</span>
+            <ul style="margin-top:10px;">
+              <t t-foreach="o.jurys_ids" t-as="j">
+                <li>
+                  <span style="font-weight:bold; text-decoration:underline;" t-esc="j.nom"/>
+                  <span> (<t t-esc="j.role_par_ced.role"/>)</span>
+                </li>
+              </t>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Page 3 -->
+        <div class="page" style="font-family: Times New Roman, serif; font-size: 14pt; line-height: 1.5;">
+          <h3 style="text-align:center; font-weight:bold; text-decoration:underline;">AVIS DU JURY POUR LA REPRODUCTION DE LA THÈSE</h3>
+
+          <p>Thèse soutenue par Mr <span style="font-weight:bold;"><t t-esc="o.doctorant_id.name"/></span> le 01 janvier 2024 en vue d'obtenir le grade de <span style="font-weight:bold;">Docteur</span>.</p>
+
+          <p style="margin-top:20px; font-weight:bold;">- Avis du jury :</p>
+          <ul style="list-style-type: disc; margin-left: 40px;">
+            <li>
+              <span class="fa fa-circle-o"/> Le jury autorise le candidat à procéder au tirage définitif de sa thèse sans aucune modification.
+            </li>
+            <li>
+              <span class="fa fa-circle-o"/> Le jury demande au candidat d'effectuer les corrections nécessaires pour répondre aux remarques et recommandations suivantes :
+            </li>
+          </ul>
+          <div style="margin-left:40px; min-height:40px; border-bottom:1px dotted #000;">
+             &amp;nbsp;
+          </div>
+
+          <p>Ces corrections seront vérifiées par M<sup>r</sup> ...............................................................</p>
+
+          <p style="margin-top:20px; font-weight:bold;">- Titre de la thèse* :</p>
+          <ul style="list-style-type: disc; margin-left: 40px;">
+            <li><span class="fa fa-circle-o"/> est inchangé</li>
+            <li><span class="fa fa-circle-o"/> est modifié comme suit</li>
+          </ul>
+          <div style="margin-left:40px; min-height:40px; border-bottom:1px dotted #000;">
+             &amp;nbsp;
+          </div>
+
+          <p style="font-weight:bold; margin-top:20px;">- Membres du jury :</p>
+          <ul style="margin-top:10px;">
+            <t t-foreach="o.jurys_ids" t-as="j">
+              <li>
+                <span style="font-weight:bold; text-decoration:underline;" t-esc="j.nom"/>
+                <span> (<t t-esc="j.role_par_ced.role"/>)</span>
+              </li>
+            </t>
+          </ul>
+
+          <div style="text-align:right; margin-top:30px;">
+            Fait à Béni Mellal, le : ..............</div>
+        </div>
+        <!-- Page 4 -->
+        <div class="page" style="font-family: Times New Roman, serif; font-size: 14pt; line-height: 1.5;">
+          <div style="text-align:center; margin-bottom:20px;">
+            <span style="font-size:18px; font-weight:bold; border:1px solid #000; padding:4px 18px; background:#f8f8f8;">Thèse de Doctorat</span>
+          </div>
+
+          <table style="width:100%; margin-bottom:10px;">
+            <tr>
+              <td style="width:35%;">Nom et Prénom du Candidat :</td>
+              <td style="font-weight:bold;"><t t-esc="o.doctorant_id.name"/></td>
+            </tr>
+            <tr>
+              <td>Date et lieu de Naissance :</td>
+              <td>.................... à ....................</td>
+            </tr>
+          </table>
+
+          <div style="margin-bottom:10px;">
+            <span style="font-weight:bold;">Scolarité :</span><br/>
+            <span style="margin-left:20px;">* Baccalauréat :</span> ............................................. <br/>
+            <span style="margin-left:20px;">* DEUG :</span> ............................................. <br/>
+            <span style="margin-left:20px;">* LICENCE :</span> ............................................. <br/>
+            <span style="margin-left:20px;">* MASTER :</span> .............................................
+          </div>
+
+          <div style="margin-bottom:10px;">
+            <span style="font-weight:bold;">Titre de la Thèse :</span> <span style="font-style:italic;"> <t t-esc="o.name"/></span>
+          </div>
+
+          <div style="margin-bottom:10px;">
+            <span style="font-weight:bold;">Date de Soutenance :</span> <span style="font-weight:bold; color:#003399;">01 janvier 2024</span>
+          </div>
+
+          <div style="margin-bottom:10px;">
+            <span style="font-weight:bold;">Membres du Jury :</span>
+            <ul style="margin-top:5px;">
+              <t t-foreach="o.jurys_ids" t-as="j">
+                <li>
+                  <span style="font-weight:bold; text-decoration:underline;" t-esc="j.nom"/>
+                  <span> (<t t-esc="j.role_par_ced.role"/>)</span>
+                </li>
+              </t>
+            </ul>
+          </div>
+
+          <div style="margin-top:30px;">
+            <table style="width:100%;">
+              <tr>
+                <td style="width:50%; text-align:center;">
+                  <span style="border:1px solid #000; padding:2px 12px; font-weight:bold;">☞ Résultat</span><br/>
+                  <span style="display:inline-block; min-width:80px;">
+                    <span class="fa fa-square-o"/> Admis
+                  </span>
+                  <span style="display:inline-block; min-width:80px;">
+                    <span class="fa fa-square-o"/> Ajourné
+                  </span>
+                </td>
+                <td style="width:50%; text-align:center;">
+                  <span style="border:1px solid #000; padding:2px 12px; font-weight:bold;">☞ Mention</span><br/>
+                  <span style="display:inline-block; min-width:80px;">
+                    <span t-if="o.mention == 'tres_honorable'" class="fa fa-check-square-o"/> <span t-if="o.mention != 'tres_honorable'" class="fa fa-square-o"/> Très honorable
+                  </span>
+                  <span style="display:inline-block; min-width:80px;">
+                    <span t-if="o.mention == 'honorable'" class="fa fa-check-square-o"/> <span t-if="o.mention != 'honorable'" class="fa fa-square-o"/> Honorable
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- Page 5 -->
+        <div class="page" style="font-family: Times New Roman, serif; font-size: 14pt; line-height: 1.5;">
+          <h3 style="text-align:center; font-weight:bold; text-decoration:underline; margin-bottom:40px;">AUTORISATION DE REPRODUCTION DE LA THÈSE</h3>
+
+          <p>
+            Je soussigné(e), ...................................................., atteste que les corrections demandées par les membres du jury de
+            thèse de M. <span style="font-weight:bold;"><t t-esc="o.doctorant_id.name"/></span>
+            soutenue le 01 janvier 2024 ont été
+            effectuées.
+          </p>
+
+          <p style="margin-top:20px;">
+            Je précise par ailleurs que le titre de la thèse* est :
+          </p>
+          <ul style="list-style-type: disc; padding-left: 40px;">
+              <li>est inchangé</li>
+              <li>modifié comme suit :</li>
+          </ul>
+          <div style="margin-left:40px; min-height:80px;">
+            <p style="border-bottom: 1px dotted #999;">&amp;nbsp;</p>
+            <p style="border-bottom: 1px dotted #999; margin-top:10px;">&amp;nbsp;</p>
+            <p style="border-bottom: 1px dotted #999; margin-top:10px;">&amp;nbsp;</p>
+          </div>
+
+          <table style="width:100%; margin-top:50px;">
+              <tr>
+                  <td style="width:50%;">Date :</td>
+                  <td style="width:50%;">Signature :</td>
+              </tr>
+          </table>
+
+          <p style="margin-top:60px;">
+              <span style="font-weight:bold; text-decoration:underline;">N.B.</span> : Prière de retourner ce formulaire dûment signé au service de Scolarité.
+          </p>
+        </div>
+        <!-- Page 6: Jury List in Arabic -->
+        <div class="page" style="direction:rtl; font-family: 'Arial', 'DejaVu Sans', sans-serif; font-size: 14pt;">
+          <h3 style="text-align:center; font-weight:bold; margin-bottom:20px;">لائحة بأسماء أعضاء لجنة المناقشة</h3>
+          <table style="width:100%; border-collapse: collapse; border: 1px solid black;">
+            <thead>
+              <tr style="background-color:#f2f2f2;">
+                <th style="border: 1px solid black; padding: 8px; text-align: center; font-weight:bold;">الإسم العائلي و الشخصي</th>
+                <th style="border: 1px solid black; padding: 8px; text-align: center; font-weight:bold;">الإطار</th>
+                <th style="border: 1px solid black; padding: 8px; text-align: center; font-weight:bold;">المؤسسة</th>
+              </tr>
+            </thead>
+            <tbody>
+              <t t-foreach="range(8)" t-as="i">
+                  <tr>
+                    <td style="border: 1px solid black; padding: 8px;">&amp;nbsp;</td>
+                    <td style="border: 1px solid black; padding: 8px;">&amp;nbsp;</td>
+                    <td style="border: 1px solid black; padding: 8px;">&amp;nbsp;</td>
+                  </tr>
+                </t>
+            </tbody>
+          </table>
+        </div>
+      </t>
+    </t>
+</template>
+</odoo> 

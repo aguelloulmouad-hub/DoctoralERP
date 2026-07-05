@@ -1,0 +1,186 @@
+<odoo>
+  <template id="soutenance_form_template" name="Formulaire Soutenance">
+    <t t-call="website.layout">
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+              <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Nouvelle Demande de Soutenance</h3>
+              </div>
+              <div class="card-body">
+                <form action="/soutenance/demande/submit" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                  <div class="form-group">
+                    <label><strong>Intitulé de la thèse</strong></label>
+                    <input type="text" class="form-control" name="name" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label><strong>Nom du doctorant</strong></label>
+                    <input type="text" class="form-control" t-att-value="user_name" readonly="readonly"/>
+                    <input type="hidden" name="doctorant_id" t-att-value="doctorant_id"/>
+                  </div>
+                  <div class="form-group">
+                    <label><strong>Nom de l'encadrant</strong></label>
+                    <input type="text" class="form-control" t-att-value="encadrant_nom" readonly="readonly"/>
+                    <input type="hidden" name="encadrant_nom" t-att-value="encadrant_nom"/>
+                  </div>
+                  <div class="form-group">
+                    <label><strong>Session</strong></label>
+                    <input type="text" class="form-control" t-att-value="session_name" readonly="readonly"/>
+                    <input type="hidden" name="session_id" t-att-value="session_id"/>
+                  </div>
+                  <div class="form-group">
+                    <label><strong>Remarque / Note</strong></label>
+                    <textarea class="form-control" name="note" rows="3"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label><strong>Documents obligatoires</strong></label>
+                    <ul class="list-group mb-2">
+                      <t t-foreach="doc_types" t-as="doc_type">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          <span t-esc="doc_type.name"/>
+                          <input type="file" t-att-name="'file_%s' % doc_type.id" required="required" class="form-control-file ml-3"/>
+                        </li>
+                      </t>
+                    </ul>
+                  </div>
+                  <div class="text-right">
+                    <button type="submit" class="btn btn-primary btn-lg">Soumettre la demande</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+  <template id="soutenance_form_success" name="Succès Soutenance">
+    <t t-call="website.layout">
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <div class="alert alert-success text-center shadow-sm">
+              <h4 class="alert-heading mb-3">Félicitations !</h4>
+              <p>Votre demande de soutenance a bien été soumise.</p>
+              <a href="/soutenance/mes_demandes" class="btn btn-outline-primary mt-3">Mes demandes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+  <template id="soutenance_list_template" name="Mes demandes de soutenance">
+    <t t-call="website.layout">
+      <div class="container py-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="mb-0">Mes demandes de soutenance</h2>
+          <a href="/soutenance/demande" class="btn btn-primary">Ajouter une demande</a>
+        </div>
+        <t t-if="docs">
+          <t t-foreach="docs" t-as="o">
+            <div class="card mb-4 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <h4 class="mb-0 flex-grow-1"><t t-esc="o.name"/></h4>
+                </div>
+                <!-- Timeline Statut -->
+                <div class="timeline-status mb-3">
+                  <ul class="timeline">
+                    <t t-if="o.statut == 'rejetee'">
+                      <li class="active">Déposée</li>
+                      <li class="active">Rejetée</li>
+                    </t>
+                    <t t-else="">
+                      <li t-att-class="'active' if o.statut in ['brouillon','en_commission','rapporteurs','jury_et_planification','planifie','fermee'] else ''">Déposée</li>
+                      <li t-att-class="'active' if o.statut in ['en_commission','rapporteurs','jury_et_planification','planifie','fermee'] else ''">Commission</li>
+                      <li t-att-class="'active' if o.statut in ['rapporteurs','jury_et_planification','planifie','fermee'] else ''">Rapporteurs</li>
+                      <li t-att-class="'active' if o.statut in ['jury_et_planification','planifie','fermee'] else ''">Jury et Planification</li>
+                      <li t-att-class="'active' if o.statut in ['planifie','fermee'] else ''">Planifiée</li>
+                      <li t-att-class="'active' if o.statut == 'fermee' else ''">Fermée</li>
+                    </t>
+                  </ul>
+                </div>
+                <style>
+                  .timeline {display:flex;list-style:none;padding:0;margin:0;}
+                  .timeline li {flex:1;text-align:center;position:relative;padding:0 5px;}
+                  .timeline li:before {content:'';display:block;width:16px;height:16px;margin:0 auto 4px;background:#ccc;border-radius:50%;}
+                  .timeline li.active:before {background:#007bff;}
+                  .timeline li.active {font-weight:bold;color:#007bff;}
+                  .timeline li:not(:last-child):after {content:'';position:absolute;top:8px;right:-8px;width:16px;height:2px;background:#ccc;z-index:0;}
+                  .timeline li.active:not(:last-child):after {background:#007bff;}
+                </style>
+                <t t-if="o.statut == 'rejetee'">
+                  <p class="text-danger"><strong>Motif de rejet :</strong> <t t-esc="o.motif_rejet"/></p>
+                </t>
+                <t t-if="o.avis_commission">
+                  <hr/>
+                  <div>
+                    <t t-if="o.avis_commission">
+                    <h5 class="mb-2">Décision de commission</h5>
+                      <p><strong>Décision :</strong> <t t-esc="o.decision_commission"/></p>
+                      <p><strong>Avis commission :</strong> <t t-esc="o.avis_commission"/></p>
+                    </t>
+                  </div>
+                </t>
+                <t t-if="(o.statut == 'jury_et_planification' and o.jurys_valides) or o.statut == 'planifie' or o.statut == 'fermee'">
+                  <hr/>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5 class="mb-2">Planification</h5>
+                      <p><strong>Date :</strong> <t t-esc="o.date_soutenance"/></p>
+                      <p><strong>Lieu :</strong> <t t-esc="o.lieu"/></p>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="mb-2">Jury</h5>
+                      <ul>
+                        <t t-foreach="o.jurys_ids" t-as="jury">
+                          <li>
+                            <t t-esc="jury.nom"/>
+                            <span style="color: #888;">
+                              <t t-if="jury.role_par_ced">
+                                (<t t-esc="jury.role_par_ced.role"/>)
+                              </t>
+                            </span>
+                          </li>
+                        </t>
+                      </ul>
+                    </div>
+                  </div>
+                </t>
+                <t t-if="o.statut == 'fermee'">
+                  <hr/>
+                  <div>
+                    <t t-if="o.statut == 'fermee'">
+                    <h5 class="mb-2">Décision de jury</h5>
+                      <p><strong>Résultat :</strong> <t t-esc="o.resultat"/></p>
+                      <p><strong>Mention :</strong> <t t-esc="o.mention"/></p>
+                    </t>
+                  </div>
+                </t>
+              </div>
+            </div>
+          </t>
+        </t>
+        <t t-if="not docs">
+          <div class="alert alert-info mt-4">Aucune demande trouvée.</div>
+        </t>
+      </div>
+    </t>
+  </template>
+  <template id="soutenance_no_session_template" name="Aucune session ouverte">
+    <t t-call="website.layout">
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <div class="alert alert-warning text-center shadow-sm">
+              <h4 class="alert-heading mb-3">Aucune session ouverte</h4>
+              <p>Il n'existe actuellement aucune session ouverte.<br/>Vous ne pouvez pas soumettre de demande de soutenance pour le moment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+</odoo>
