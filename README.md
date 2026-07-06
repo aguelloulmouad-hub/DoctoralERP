@@ -178,6 +178,7 @@ Le processus de soutenance suit un workflow précis avec **7 états** :
 <p align="center">
   <img src="Imgs/Capture.png" alt="Captures de l'application" width="600"/>
 </p>
+
 ---
 
 ## 📐 Diagrammes UML
