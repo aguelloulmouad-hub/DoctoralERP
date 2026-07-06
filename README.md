@@ -175,34 +175,9 @@ Le processus de soutenance suit un workflow précis avec **7 états** :
 
 ## 📸 Captures d'écran
 
-### Portail Web — Formulaire de Demande
-Le doctorant soumet une nouvelle demande de soutenance via un formulaire web intégré au site.
-
 <p align="center">
-  <img src="Imgs/PageFormulaireDemandeWEB.jpg" alt="Formulaire web de demande de soutenance" width="600"/>
+  <img src="Imgs/Capture.png" alt="Captures de l'application" width="600"/>
 </p>
-
-### Portail Web — Mes Demandes de Soutenance
-Le doctorant peut consulter l'ensemble de ses demandes et leur statut, y compris les résultats et la mention.
-
-<p align="center">
-  <img src="Imgs/PageMesDemandesSoutenancesWEB.jpg" alt="Page mes demandes de soutenance" width="700"/>
-</p>
-
-### Backend Odoo — État Commission
-Vue du service CED lors de l'examen de la demande par la commission de thèse.
-
-<p align="center">
-  <img src="Imgs/CaptureOdooCommission.jpg" alt="Vue Odoo état Commission" width="700"/>
-</p>
-
-### Backend Odoo — Étape Rapporteurs
-Gestion des rapporteurs avec import Excel, validation et envoi des invitations.
-
-<p align="center">
-  <img src="Imgs/CaptureOdooRapporteurs.jpg" alt="Vue Odoo étape Rapporteurs" width="700"/>
-</p>
-
 ---
 
 ## 📐 Diagrammes UML
